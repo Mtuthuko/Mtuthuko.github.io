@@ -1,1 +1,754 @@
-Hello From Mtuthuko Mngomezulu
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mtuthuko Mngomezulu — Founder, iSinkwaMtase · Generative-AI engineer</title>
+<meta name="description" content="Hello from Mtuthuko Mngomezulu: founder of iSinkwaMtase, a creative venture studio from KwaThema, and generative-AI engineer.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F5C242" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#100D08" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mtuthuko Mngomezulu — Founder, iSinkwaMtase · Generative-AI engineer">
+<meta property="og:description" content="Hello from Mtuthuko Mngomezulu: founder of iSinkwaMtase, a creative venture studio from KwaThema, and generative-AI engineer.">
+<meta property="og:image" content="https://mtuthuko.github.io/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hello from Mtuthuko Mngomezulu, in ink capitals on a marigold field.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="assets/mm.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,50..150,100..900;1,100,300&family=Hanken+Grotesk:wght@400;600&display=swap");
+
+/* =====================================================================
+   GOLD SEAM: the design system for Mtuthuko Mngomezulu's pages.
+   Every value lives here once, as a token. DESIGN.md explains them.
+   ===================================================================== */
+
+/* 1. Palette. Day is the default; Night follows the visitor's scheme. */
+:root{
+  color-scheme: light dark;
+  --gold-field:#F5C242;   /* hero and work field */
+  --gold-type:#F5C242;    /* gold type, seam and nodes on ink; gold plates */
+  --gold-deep:#E8AE24;    /* hover surface on gold */
+  --ink:#15120C;          /* text on gold; story and close fields */
+  --ink-raised:#231E15;   /* hover surface on ink */
+  --ink-2:#523F0E;        /* secondary text on gold */
+  --sand:#F1E7D3;         /* body text on ink */
+  --sand-2:#B9AC93;       /* secondary text on ink */
+  --rule-gold:#6E5413;    /* 2px rules and borders on gold */
+  --rule-ink:#8C7A52;     /* 2px rules and borders on ink */
+
+  /* 2. Type */
+  --font-display:"Anybody", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+  --font-text:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --t-hello:clamp(1.75rem, 1rem + 3vw, 3.5rem);
+  --t-h2:clamp(2rem, 1.2rem + 3.4vw, 4.5rem);
+  --t-pitch:clamp(1.75rem, 1.1rem + 2.6vw, 3.5rem);
+  --t-feature:clamp(2rem, 1.3rem + 2.8vw, 3.75rem);
+  --t-h3:clamp(1.375rem, 1.1rem + 1.2vw, 2.25rem);
+  --t-quote:clamp(1.25rem, 1rem + 1.2vw, 2rem);
+  --t-role:clamp(1.15rem, .9rem + .9vw, 1.6rem);
+  --t-email:clamp(1.25rem, 1rem + 1.6vw, 2.25rem);
+  --t-price:clamp(2.25rem, 1.5rem + 3vw, 4rem);
+  --t-ui:1.0625rem;
+  --t-nav:.9375rem;
+  --t-lead:clamp(1.125rem, 1rem + .4vw, 1.3rem);
+  --t-body:1.0625rem;
+  --t-small:.9375rem;
+  --t-label:.8125rem;
+
+  /* 3. Space, lane, lines */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px;
+  --s-7:48px; --s-8:64px; --s-9:96px; --s-10:128px; --s-11:160px;
+  --max:1440px;
+  --gutter:clamp(16px, 4.4vw, 64px);
+  --col-gap:clamp(16px, 2vw, 32px);
+  --section-pad:clamp(64px, 10vw, 160px);
+  --hero-pad-b:clamp(48px, 8vh, 96px);
+  --lane:28px;
+  --h2-gap:32px;
+  --group-gap:96px;
+  --row-pad:28px;
+  --r-0:0; --r-node:50%; --r-turn:12px; --r-cap:999px;
+  --line-seam:3px; --line-rule:2px; --line-focus:3px; --node:14px;
+  --shadow:none;
+  --z-sun:0; --z-content:1; --z-header:2; --z-skip:10;
+
+  /* 4. Motion */
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --dur-swap:160ms; --dur-exit:200ms; --dur-enter:360ms;
+}
+@media (min-width:1000px){ :root{ --lane:40px; --h2-gap:48px; --group-gap:128px; --row-pad:36px; } }
+@media (prefers-color-scheme: dark){ :root{
+  /* Night: the hero turns ink; the work field deepens to cut glare */
+  --gold-field:#D29A1E; --gold-type:#F2BE3E; --gold-deep:#C08A14;
+  --ink:#100D08; --ink-raised:#1D1912; --ink-2:#3A2A05;
+  --sand:#EDE3CF; --sand-2:#ADA088;
+  --rule-gold:#5A420B; --rule-ink:#8C7A52;
+}}
+
+/* 5. Fields. Components read only these tokens, so they work on gold or ink. */
+.field-gold, .field-hero,
+html.dawn .field-hero.is-day, html.dawn .field-hero .is-day{
+  --bg:var(--gold-field); --fg:var(--ink); --fg-2:var(--ink-2); --display:var(--ink);
+  --plate:var(--ink); --on-plate:var(--gold-type); --plate-hover:var(--ink-raised);
+  --seam:var(--ink); --ring:var(--ink); --raised:var(--gold-deep); --rule:var(--rule-gold);
+  --flood:var(--ink); --flood-fg:var(--gold-type); --flood-fg-2:var(--sand-2);
+}
+.field-ink{
+  --bg:var(--ink); --fg:var(--sand); --fg-2:var(--sand-2); --display:var(--gold-type);
+  --plate:var(--gold-type); --on-plate:var(--ink); --plate-hover:var(--gold-deep);
+  --seam:var(--gold-type); --ring:var(--gold-type); --raised:var(--ink-raised); --rule:var(--rule-ink);
+  --flood:var(--gold-field); --flood-fg:var(--ink); --flood-fg-2:var(--ink-2);
+}
+@media (prefers-color-scheme: dark){
+  .field-hero{ /* the .field-ink values: the hero is ink at night */
+    --bg:var(--ink); --fg:var(--sand); --fg-2:var(--sand-2); --display:var(--gold-type);
+    --plate:var(--gold-type); --on-plate:var(--ink); --plate-hover:var(--gold-deep);
+    --seam:var(--gold-type); --ring:var(--gold-type); --raised:var(--ink-raised); --rule:var(--rule-ink);
+    --flood:var(--gold-field); --flood-fg:var(--ink); --flood-fg-2:var(--ink-2);
+  }
+  .field-story{ --bg:var(--ink-raised); }
+}
+.field-gold, .field-ink, .field-hero{ background-color:var(--bg); color:var(--fg); }
+.site-header{ background:transparent; }
+
+/* 6. Base and browser surfaces */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ background:var(--ink); -webkit-text-size-adjust:100%; text-size-adjust:100%;
+      scrollbar-color:var(--ink) var(--gold-field); accent-color:var(--ink); }
+@media (prefers-color-scheme: dark){ html{ scrollbar-color:var(--gold-type) var(--ink); } }
+@media (prefers-reduced-motion: no-preference){ html{ scroll-behavior:smooth; } }
+body{ margin:0; background:var(--ink); color:var(--sand); font:400 var(--t-body)/1.6 var(--font-text);
+      font-synthesis:none; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color:transparent; caret-color:currentColor; }
+h1,h2,h3,p,figure,ul,ol{ margin:0; }
+ul,ol{ padding:0; list-style:none; }
+h1,h2,h3{ text-wrap:balance; }
+p{ text-wrap:pretty; }
+b,strong{ font-weight:600; }
+img{ display:block; max-width:100%; height:auto; }
+a{ color:inherit; }
+svg{ flex:none; }
+[hidden]{ display:none !important; }
+:focus-visible{ outline:var(--line-focus) solid var(--ring, currentColor); outline-offset:3px; }
+:focus:not(:focus-visible){ outline:none; }
+main:focus{ outline:none; }
+::selection{ background:var(--ink); color:var(--gold-type); }
+.field-ink::selection, .field-ink ::selection{ background:var(--gold-type); color:var(--ink); }
+@media (prefers-color-scheme: dark){ .field-hero::selection, .field-hero ::selection{ background:var(--gold-type); color:var(--ink); } }
+.vh{ position:absolute !important; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+.tnum{ font-variant-numeric:tabular-nums lining-nums; }
+
+.wrap{ max-width:var(--max); margin-inline:auto; padding-inline:var(--gutter); position:relative; }
+.wrap.lane{ padding-left:calc(var(--gutter) + var(--lane)); padding-block:var(--section-pad); }
+
+/* 7. Skip link (declared after the fields so its plate colour wins) */
+.skip{ position:absolute; left:var(--gutter); top:8px; z-index:var(--z-skip); min-height:48px; padding:0 18px;
+       display:inline-flex; align-items:center; background-color:var(--plate); color:var(--on-plate);
+       font:750 1rem/1 var(--font-display); font-stretch:115%; text-decoration:none;
+       transform:translateY(-200%); transition:transform var(--dur-swap) var(--ease-out); }
+.skip:focus-visible{ transform:none; }
+
+/* 8. Header, mark, nav */
+.site-header{ position:absolute; inset:0 0 auto 0; z-index:var(--z-header); }
+.site-header .wrap{ display:flex; height:72px; align-items:center; justify-content:space-between; }
+.mark{ display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; margin-left:-5px; color:var(--display); }
+.mark svg{ width:34px; height:26px; }
+.nav ul{ display:flex; gap:16px; }
+.nav a{ display:inline-flex; align-items:center; min-height:44px; font:700 var(--t-nav)/1 var(--font-display); font-stretch:110%;
+        color:var(--fg); text-decoration:none; }
+.nav a:hover{ text-decoration:underline 2px; text-underline-offset:.3em; }
+@media (min-width:600px){ .nav ul{ gap:28px; } }
+
+/* 9. Actions: plate (primary), ghost (secondary), text links */
+.plate{ display:inline-flex; align-items:center; gap:12px; min-height:56px; padding:0 22px; border:0; border-radius:0;
+        background:var(--plate); color:var(--on-plate); font:750 var(--t-ui)/1.15 var(--font-display); font-stretch:115%;
+        text-decoration:none; text-wrap:balance; cursor:pointer; transition:background-color var(--dur-swap) var(--ease-out); }
+.plate .arrow{ width:18px; height:14px; transition:transform var(--dur-exit) var(--ease-out); }
+.plate:hover{ background:var(--plate-hover); }
+.plate:hover .arrow{ transform:translateX(4px); }
+.plate:active{ transform:translateY(1px); }
+@media (max-width:479.98px){ .plate{ width:100%; justify-content:space-between; } }
+
+.ghost{ display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:0 18px; background:transparent;
+        color:var(--fg); border:2px solid var(--rule); border-radius:0; font:700 var(--t-nav)/1 var(--font-display);
+        font-stretch:110%; cursor:pointer;
+        transition:background-color var(--dur-swap) var(--ease-out), border-color var(--dur-swap) var(--ease-out); }
+.ghost:hover{ background:var(--raised); border-color:var(--fg); }
+.ghost .ico{ width:16px; height:16px; }
+.ghost .ico-check, .ghost[data-state="copied"] .ico-copy{ display:none; }
+.ghost[data-state="copied"] .ico-check{ display:block; }
+
+.link{ color:inherit; text-decoration-line:underline; text-decoration-thickness:2px; text-underline-offset:.22em;
+       transition:text-decoration-thickness var(--dur-swap) var(--ease-out); }
+.link:hover{ text-decoration-thickness:4px; }
+.link--solo{ display:inline-flex; align-items:center; gap:6px; min-height:44px; font-weight:600; }
+.ext{ width:12px; height:12px; }
+
+.label{ font:700 var(--t-label)/1.2 var(--font-display); font-stretch:75%; letter-spacing:.06em; text-transform:uppercase;
+        color:var(--fg-2); font-variant-numeric:tabular-nums lining-nums; }
+.label.domain{ text-transform:none; letter-spacing:.04em; display:inline-flex; align-items:center; gap:6px; overflow-wrap:anywhere; }
+
+/* 10. The seam: one line per field, nodes on it, ticks into rows */
+.seam{ position:absolute; left:var(--gutter); top:0; bottom:0; width:var(--line-seam); border-radius:var(--r-cap);
+       background:var(--seam); transform-origin:50% 0; }
+html.seam-pre [data-seam] > .seam{ transform:scaleY(0); }
+.horizon{ display:block; height:var(--line-seam); border-radius:var(--r-cap); background:var(--seam); transform-origin:0 50%; margin:0 0 28px; }
+.node{ position:absolute; width:var(--node); height:var(--node); border-radius:var(--r-node); border:3px solid var(--seam); background:var(--bg); }
+.node::after{ content:""; position:absolute; inset:0; border-radius:50%; background:var(--seam);
+              transition:transform var(--dur-enter) var(--ease-out); }
+html.seam-live .node:not(.is-now):not(.is-lit)::after{ transform:scale(0); }
+
+/* 11. Hero: the greeting is the design */
+.hero{ position:relative; isolation:isolate; padding-top:calc(72px + clamp(16px, 4vh, 48px)); padding-bottom:var(--hero-pad-b); }
+.hero > .wrap{ z-index:var(--z-content); width:100%; }
+.sun{ position:absolute; inset:0; z-index:var(--z-sun); background:var(--gold-field); display:none; }
+[data-dawn]{ color:var(--fg); }
+
+.nameplate{ display:block; container-type:inline-size; margin:0; color:var(--display); font-family:var(--font-display); font-weight:850; }
+.hello{ display:block; font-style:italic; font-weight:300; font-stretch:100%; font-size:var(--t-hello); line-height:1; margin:0 0 .12em; color:var(--display); }
+.np-line{ display:block; white-space:nowrap; text-transform:uppercase; font-weight:850; letter-spacing:-.01em; line-height:.84;
+          font-stretch:var(--w); font-size:9cqi; min-height:calc(var(--np) * .84); color:var(--display); }
+html.np-ready .np-line{ font-size:calc(var(--np) * var(--np-fix, 1)); }
+.nameplate--hero{ margin-bottom:28px; }
+.nameplate--hero .np-1{ --np:19.30cqi; --w:87.9%; }
+.nameplate--hero .np-2{ --np:19.30cqi; --w:70%; }
+@container (min-width:600px){
+  .nameplate--hero .np-1{ --np:15.82cqi; --w:106.8%; }
+  .nameplate--hero .np-2{ --np:15.82cqi; --w:85%; }
+}
+@container (min-width:1000px){
+  .nameplate--hero .np-1{ --np:13.41cqi; --w:125.5%; }
+  .nameplate--hero .np-2{ --np:13.41cqi; --w:100%; }
+}
+.nameplate--close .np-line{ --np:20.44cqi; --w:60%; }
+@container (min-width:600px){ .nameplate--close .np-line{ --np:14.94cqi; --w:80%; } }
+@container (min-width:1000px){ .nameplate--close .np-line{ --np:11.77cqi; --w:100%; } }
+
+.hero__below{ position:relative; }
+.seam--hero{ left:0; top:0; bottom:calc(-1 * var(--hero-pad-b)); }
+.hero__details{ display:grid; gap:16px; padding-left:var(--lane); }
+.role{ font:750 var(--t-role)/1.15 var(--font-display); font-stretch:115%; color:var(--fg); }
+.where{ margin-top:6px; color:var(--fg-2); }
+.lead{ font:400 var(--t-lead)/1.5 var(--font-text); max-width:52ch; color:var(--fg); }
+.cta-row{ display:flex; flex-wrap:wrap; align-items:center; gap:12px 24px; margin-top:24px; }
+@media (min-width:600px){
+  .hero__details{ grid-template-columns:1fr 1fr; column-gap:32px; }
+}
+@media (min-width:1000px){
+  .hero{ min-height:92svh; display:flex; flex-direction:column; justify-content:flex-end; }
+  .nameplate--hero{ margin-bottom:40px; }
+  .horizon{ margin-bottom:40px; }
+  .hero__details{ grid-template-columns:repeat(12, minmax(0, 1fr)); column-gap:var(--col-gap); }
+  .hero__who{ grid-column:1 / span 5; }
+  .hero__act{ grid-column:7 / span 6; }
+}
+
+/* 12. Section headings */
+.h2{ font:800 var(--t-h2)/.95 var(--font-display); font-stretch:125%; letter-spacing:-.015em; color:var(--display); margin-bottom:var(--h2-gap); }
+.h3{ font:780 var(--t-h3)/1.1 var(--font-display); font-stretch:115%; letter-spacing:-.01em; color:var(--display); overflow-wrap:break-word; }
+@media (max-width:359.98px){ :root{ --t-h3:1.25rem; } } /* small phones: the longest name (iSinkwaMtase) still fits the timeline column */
+
+/* 13. Story: portrait and ledger timeline */
+.portrait{ position:relative; width:200px; margin:44px 12px; } /* collapses with the h2's 32px: the plate mark sits 32px below it */
+.portrait img{ width:100%; aspect-ratio:1; object-fit:cover; }
+.portrait::after{ content:""; position:absolute; inset:-12px; border:2px solid var(--rule); pointer-events:none; }
+.ledger{ display:grid; gap:32px; }
+.ledger li{ position:relative; display:grid; grid-template-columns:4.75rem minmax(0, 1fr); column-gap:16px; align-items:baseline; }
+.ledger .node{ left:calc(-1 * var(--lane) - 5.5px); top:calc(var(--t-h3) * .55 - 7px); }
+@media (max-width:359.98px){ .ledger li{ grid-template-columns:3.5rem minmax(0, 1fr); column-gap:12px; } }
+.detail{ font:400 var(--t-body)/1.5 var(--font-text); color:var(--fg-2); margin-top:6px; max-width:60ch; }
+.what .link--solo{ margin-top:2px; }
+.note{ margin-top:48px; max-width:60ch; }
+.note p{ color:var(--fg); }
+.note__link{ margin-top:16px; }
+@media (min-width:600px){
+  .portrait{ width:240px; }
+  .ledger li{ grid-template-columns:7.5rem minmax(0, 1fr); column-gap:24px; }
+}
+@media (min-width:1000px){
+  .story{ display:grid; grid-template-columns:repeat(12, minmax(0, 1fr)); column-gap:var(--col-gap); }
+  .story > .h2, .story > .ledger, .story > .note{ grid-column:1 / span 8; }
+  .story > .portrait{ grid-column:10 / span 3; grid-row:1 / span 3; width:min(calc(100% - 24px), 304px); margin:12px;
+                      position:sticky; top:96px; align-self:start; }
+  .ledger{ gap:40px; }
+}
+
+/* 14. Work rows: each one is a stretched link that floods from the seam side */
+.row{ --bleed:12px; position:relative; isolation:isolate; display:grid; gap:8px 32px; padding-block:var(--row-pad); border-top:2px solid var(--rule); color:var(--fg); }
+.row:last-child{ border-bottom:2px solid var(--rule); }
+.row h3{ color:var(--display); }
+.row h3 a{ color:inherit; text-decoration:none; }
+.row h3 a::after{ content:""; position:absolute; inset:0 calc(-1 * var(--bleed)); z-index:1; }
+.row .desc{ color:var(--fg-2); font:400 var(--t-body)/1.5 var(--font-text); margin-top:6px; max-width:60ch; }
+.row::before{ content:""; position:absolute; inset:0 calc(-1 * var(--bleed)); z-index:-1; background:var(--flood); /* bleeds past the text, short of the tick */
+              clip-path:inset(0 100% 0 0); transition:clip-path var(--dur-exit) var(--ease-out); }
+.row::after{ content:""; position:absolute; left:calc(-1 * var(--lane) + 1.5px); width:12px; height:3px;
+             top:calc(var(--row-pad) + .55 * var(--t-h3) - 1.5px); background:var(--seam); border-radius:var(--r-cap); }
+.row, .row *{ transition-property:color; transition-duration:var(--dur-swap); transition-timing-function:linear; transition-delay:60ms; }
+@media (hover:hover){
+  .row:hover::before{ clip-path:inset(0); transition-duration:var(--dur-enter); }
+  .row:hover{ --fg:var(--flood-fg); --fg-2:var(--flood-fg-2); --display:var(--flood-fg); --ring:var(--flood-fg); }
+}
+.row:focus-within::before, .row:active::before{ clip-path:inset(0); transition-duration:var(--dur-enter); }
+.row:focus-within, .row:active{ --fg:var(--flood-fg); --fg-2:var(--flood-fg-2); --display:var(--flood-fg); --ring:var(--flood-fg); }
+.row--feature{ --row-pad:48px; }
+.row--feature .h3{ font:850 var(--t-feature)/.95 var(--font-display); font-stretch:125%; letter-spacing:-.01em; text-transform:uppercase; }
+.row--feature::after{ top:calc(var(--row-pad) + .475 * var(--t-feature) - 1.5px); }
+.quote{ font:italic 300 var(--t-quote)/1.15 var(--font-display); font-stretch:100%; color:var(--fg); margin-top:12px; }
+@media (min-width:1000px){
+  .row{ --bleed:16px; grid-template-columns:minmax(0, 1fr) auto; align-items:baseline; }
+  .row--feature{ --row-pad:64px; }
+}
+
+/* 15. Websites bridge, inside the gold work field */
+.pitch{ margin-top:var(--group-gap); }
+.pitch-h{ position:relative; font:800 var(--t-pitch)/1.02 var(--font-display); font-stretch:110%; letter-spacing:-.015em; max-width:20ch; color:var(--display); }
+.pitch-h .node{ left:calc(-1 * var(--lane) - 5.5px); top:calc(.51em - 7px); }
+.pitch__act{ margin-top:24px; }
+.pitch__act .plate{ margin-top:24px; }
+@media (min-width:1000px){
+  .pitch{ display:grid; grid-template-columns:repeat(12, minmax(0, 1fr)); column-gap:var(--col-gap); }
+  .pitch-h{ grid-column:1 / span 8; }
+  .pitch__act{ grid-column:9 / span 4; align-self:end; margin-top:0; }
+}
+
+/* 16. Close: the line turns and underlines the address */
+.close-run{ position:relative; }
+.seam--run{ left:calc(-1 * var(--lane)); top:calc(-1 * var(--section-pad)); bottom:-11.5px; width:12px; background:none; border-radius:0;
+            border-left:3px solid var(--seam); border-bottom:3px solid var(--seam); border-bottom-left-radius:var(--r-turn); }
+.email-box{ position:relative; display:block; width:fit-content; max-width:100%; margin-top:clamp(24px, 3vw, 40px); }
+.email{ font:700 var(--t-email)/1.15 var(--font-display); font-stretch:100%; color:var(--fg); text-decoration:none; }
+.email:hover{ color:var(--display); }
+.uline{ position:absolute; left:calc(-1 * var(--lane) + 12px); right:0; bottom:-11.5px; height:3px; background:var(--seam); transform-origin:0 50%; }
+.dot{ position:absolute; right:-15px; bottom:-14.5px; width:9px; height:9px; border-radius:50%; background:var(--seam); }
+.close-actions{ margin-top:40px; display:flex; flex-wrap:wrap; align-items:center; gap:16px 24px; }
+.links{ margin-top:32px; display:flex; flex-wrap:wrap; gap:4px 24px; }
+@media (max-width:599.98px){ .email{ font-stretch:75%; } }
+
+/* 17. Footer: the line has ended, so it sits at the gutter */
+.footer{ padding-block:32px; border-top:2px solid var(--rule); }
+.footer p{ font:400 var(--t-small)/1.5 var(--font-text); color:var(--fg-2); }
+
+/* 18. The seam opens: first visit only, motion allowed (JS adds html.dawn) */
+html.dawn .horizon{ transform:scaleX(0); }
+html.dawn .seam--hero{ transform:scaleY(0); }
+@media not all and (prefers-color-scheme: dark){
+  html.dawn .sun{ display:block; clip-path:inset(50% 0 50% 0); }
+  html.dawn .field-hero{ /* night frame: the .field-ink values */
+    --bg:var(--ink); --fg:var(--sand); --fg-2:var(--sand-2); --display:var(--gold-type);
+    --plate:var(--gold-type); --on-plate:var(--ink); --plate-hover:var(--gold-deep);
+    --seam:var(--gold-type); --ring:var(--gold-type); --raised:var(--ink-raised); --rule:var(--rule-ink);
+    --flood:var(--gold-field); --flood-fg:var(--ink); --flood-fg-2:var(--ink-2);
+  }
+  html.dawn .field-hero.is-day, html.dawn .field-hero .is-day{
+    --bg:var(--gold-field); --fg:var(--ink); --fg-2:var(--ink-2); --display:var(--ink);
+    --plate:var(--ink); --on-plate:var(--gold-type); --plate-hover:var(--ink-raised);
+    --seam:var(--ink); --ring:var(--ink); --raised:var(--gold-deep); --rule:var(--rule-gold);
+  }
+  html.dawn .field-hero, html.dawn .field-hero *{ transition:color 160ms linear, background-color 160ms linear,
+     border-color 160ms linear, fill 160ms linear, stroke 160ms linear, outline-color 160ms linear; }
+}
+html.dawn-fade .field-hero, html.dawn-fade .field-hero *{ transition:color 400ms linear, background-color 400ms linear,
+     border-color 400ms linear, fill 400ms linear, stroke 400ms linear, transform 400ms var(--ease-out) !important; }
+
+/* 19. Reduced motion: final state at first paint, instant state changes */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ transition-duration:.01ms !important; transition-delay:0s !important; animation:none !important; }
+  .plate:hover .arrow{ transform:none; }
+}
+</style>
+<script>
+(function (d) {
+  d.classList.add('js');
+  window.__mmEndDawn = function () {
+    if (!d.classList.contains('dawn')) return;
+    d.classList.add('dawn-fade'); d.classList.remove('dawn');
+    setTimeout(function () { d.classList.remove('dawn-fade'); }, 450);
+  };
+  try {
+    if (!matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
+    d.classList.add('seam-pre');
+    if (location.hash) return;
+    try { if (sessionStorage.getItem('mm-dawn') === '1') return; } catch (e) {}
+    d.classList.add('dawn');
+    setTimeout(function () { if (!window.__mmDawn) window.__mmEndDawn(); }, 1500);
+  } catch (e) {}
+})(document.documentElement);
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous" defer></script>
+</head>
+<body>
+<a class="skip field-hero" href="#main">Skip to content</a>
+<header class="site-header field-hero" data-dawn>
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Mtuthuko Mngomezulu, home"><svg viewBox="0 0 34 26" aria-hidden="true" focusable="false"><polyline points="3,23 3,3 10,14 17,3 24,14 31,3 31,23" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <nav class="nav" aria-label="Sections">
+      <ul>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#hello">Say hello</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+  <section class="hero field-hero" id="top" aria-labelledby="hello-name">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="wrap">
+      <h1 class="nameplate nameplate--hero" id="hello-name"><span class="hello" data-dawn>Hello from</span> <span class="np-line np-1" data-dawn>Mtuthuko</span> <span class="np-line np-2" data-dawn>Mngomezulu</span></h1>
+      <div class="hero__below">
+        <span class="horizon" aria-hidden="true"></span>
+        <span class="seam seam--hero" aria-hidden="true"></span>
+        <div class="hero__details">
+          <div class="hero__who" data-dawn>
+            <p class="role">Founder, iSinkwaMtase · Generative-AI engineer</p>
+            <p class="where">KwaThema, Ekurhuleni · South Africa</p>
+          </div>
+          <div class="hero__act" data-dawn>
+            <p class="lead">Mathematics at Wits — the University of the Witwatersrand in Johannesburg — then years on the data floors of one of South Africa’s big four banks, and now building generative AI for enterprise software.</p>
+            <div class="cta-row">
+              <a class="plate" href="mailto:mngomezuluntuthuko@gmail.com?subject=Hello">Say hello back<span class="vh"> by email</span><svg class="arrow" viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a class="link link--solo" href="https://www.linkedin.com/in/mngomezulu/" target="_blank" rel="noopener">See my LinkedIn<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="field-ink field-story" id="story" aria-labelledby="story-h">
+    <div class="wrap lane" data-seam><span class="seam" aria-hidden="true"></span>
+      <div class="story">
+        <h2 class="h2" id="story-h">The short version</h2>
+        <figure class="portrait"><img src="assets/portrait.webp" width="640" height="640" alt="Mtuthuko Mngomezulu" loading="lazy" decoding="async"></figure>
+        <ol class="ledger">
+          <li>
+            <span class="node is-now" aria-hidden="true"></span>
+            <p class="label when">Now</p>
+            <div class="what"><h3 class="h3">Generative-AI Engineer</h3><p class="detail">Telephony voice agents, conversational AI, recommendation and price-estimation systems</p></div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <p class="label when">to <span class="tnum">2025</span></p>
+            <div class="what"><h3 class="h3">Senior Data Scientist</h3><p class="detail">FNB South Africa — FirstRand group</p></div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <p class="label when">before</p>
+            <div class="what"><h3 class="h3">Data Scientist II</h3><p class="detail">FNB South Africa — FirstRand group</p></div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <p class="label when">2024</p>
+            <div class="what"><h3 class="h3">Founder, iSinkwaMtase</h3><p class="detail">Creative venture studio from KwaThema — music, media, AI, technology</p>
+              <a class="link link--solo" href="https://www.isinkwamtase.com" target="_blank" rel="noopener">isinkwamtase.com<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <p class="label when">2022</p>
+            <div class="what"><h3 class="h3">IEEE-published researcher</h3><p class="detail">ICEET 2022, recommendation systems, with the University of the Witwatersrand</p></div>
+          </li>
+          <li>
+            <span class="node" aria-hidden="true"></span>
+            <p class="label when">Wits</p>
+            <div class="what"><h3 class="h3">Computer Science &amp; Applied Mathematics</h3><p class="detail">Honours in Data Science</p></div>
+          </li>
+        </ol>
+        <div class="note">
+          <p><strong>Where I work now, and the full history with dates — that is all on my LinkedIn.</strong> It is public, and it is the place I keep current. Click through and check me properly.</p>
+          <a class="link link--solo note__link" href="https://www.linkedin.com/in/mngomezulu/" target="_blank" rel="noopener">See my LinkedIn<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="field-gold field-work">
+    <div class="wrap lane" data-seam><span class="seam" aria-hidden="true"></span>
+      <section id="work" aria-labelledby="work-h">
+        <h2 class="h2" id="work-h">Live work you can click</h2>
+        <ul class="work">
+          <li class="row row--feature">
+            <div class="row__main">
+              <h3 class="h3"><a href="https://vynklo.com" target="_blank" rel="noopener">Vynklo<span class="vh"> (opens in a new tab)</span></a></h3>
+              <p class="quote">“Big ideas. Better together.”</p>
+              <p class="desc">A new home for brands and creators.</p>
+            </div>
+            <p class="label domain">vynklo.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+          </li>
+          <li class="row">
+            <div class="row__main">
+              <h3 class="h3"><a href="https://goldchat.co.za" target="_blank" rel="noopener">GoldChat<span class="vh"> (opens in a new tab)</span></a></h3>
+              <p class="desc">End-to-end encrypted chat, web + Android. About 5&nbsp;MB, compresses photos before they send, and works on a weak connection.</p>
+            </div>
+            <p class="label domain">goldchat.co.za<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+          </li>
+          <li class="row">
+            <div class="row__main">
+              <h3 class="h3"><a href="https://www.isinkwamtase.com" target="_blank" rel="noopener">iSinkwaMtase<span class="vh"> (opens in a new tab)</span></a></h3>
+              <p class="desc">Group company site, 7 divisions.</p>
+            </div>
+            <p class="label domain">isinkwamtase.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+          </li>
+          <li class="row">
+            <div class="row__main">
+              <h3 class="h3"><a href="https://quickcashbuddy.com" target="_blank" rel="noopener">QuickCashBuddy<span class="vh"> (opens in a new tab)</span></a></h3>
+              <p class="desc">Fintech brand landing site.</p>
+            </div>
+            <p class="label domain">quickcashbuddy.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+          </li>
+          <li class="row">
+            <div class="row__main">
+              <h3 class="h3"><a href="https://correction-point-polygraph.vercel.app" target="_blank" rel="noopener">Correction Point Polygraph<span class="vh"> (opens in a new tab)</span></a></h3>
+              <p class="desc">Brochure site for a professional services firm.</p>
+            </div>
+            <p class="label domain">correction-point-polygraph.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+          </li>
+          <li class="row">
+            <div class="row__main">
+              <h3 class="h3"><a href="https://betslip-engine.vercel.app" target="_blank" rel="noopener">Slip Engine<span class="vh"> (opens in a new tab)</span></a></h3>
+              <p class="desc">Live sports-data dashboard.</p>
+            </div>
+            <p class="label domain">betslip-engine.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+          </li>
+        </ul>
+      </section>
+      <section id="websites" class="pitch" aria-labelledby="websites-h">
+        <h2 class="pitch-h" id="websites-h"><span class="node is-now" aria-hidden="true"></span>A website that loads fast, reads clearly on a phone, and gets you the enquiry.</h2>
+        <div class="pitch__act">
+          <p class="lead">Fixed price, fixed timeline, hosted on accounts you own. No retainers, no monthly builder fees unless you want them.</p>
+          <a class="plate" href="mailto:mngomezuluntuthuko@gmail.com?subject=Website%20quote">Get a quote in 24 hours<svg class="arrow" viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="field-ink close" id="hello" aria-labelledby="hello-h">
+    <div class="wrap lane">
+      <div class="close-run">
+        <span class="seam seam--run" aria-hidden="true"></span>
+        <h2 class="nameplate nameplate--close" id="hello-h"><span class="np-line">Say hello back</span></h2>
+        <p class="email-box"><a class="email" href="mailto:mngomezuluntuthuko@gmail.com?subject=Hello">mngomezuluntuthuko@<wbr>gmail.com</a><span class="uline" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span></p>
+      </div>
+      <div class="close-actions">
+        <button class="ghost" type="button" id="copy-email" hidden><svg class="ico ico-copy" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="5" width="8.5" height="8.5"/><path d="M11 2.5H2.5V11"/></svg><svg class="ico ico-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 8.5 6.5 12 13 4.5"/></svg><span class="ghost__label">Copy address</span></button>
+        <p class="label tnum" id="jhb-time">Johannesburg time · SAST (UTC+2)</p>
+      </div>
+      <p class="vh" id="copy-status" aria-live="polite"></p>
+      <ul class="links">
+        <li><a class="link link--solo" href="https://www.linkedin.com/in/mngomezulu/" target="_blank" rel="noopener">LinkedIn<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><a class="link link--solo" href="https://github.com/Mtuthuko" target="_blank" rel="noopener">GitHub<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><a class="link link--solo" href="https://www.isinkwamtase.com" target="_blank" rel="noopener">iSinkwaMtase<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><a class="link link--solo" href="https://vynklo.com" target="_blank" rel="noopener">Vynklo<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><a class="link link--solo" href="https://mngomezulu.africa/" target="_blank" rel="noopener">mngomezulu.africa<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+<footer class="field-ink footer">
+  <div class="wrap"><p>Mtuthuko Mngomezulu · KwaThema, Ekurhuleni · South Africa</p></div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+  var d = document.documentElement;
+  var EMAIL = 'mngomezuluntuthuko@gmail.com';
+  var G = window.gsap;
+  var ST = G && window.ScrollTrigger;
+  if (ST) G.registerPlugin(ST);
+  function refresh() { if (ST) ST.refresh(); }
+
+  /* Nameplates: fitted sizes apply once Anybody has really loaded; a guard shrinks them if a line ever overflows. */
+  var npReady = false, waiters = [], queued = false;
+  function anybodyLoaded() {
+    var ok = false;
+    try { document.fonts.forEach(function (f) { if (f.family.replace(/["']/g, '') === 'Anybody' && f.status === 'loaded') ok = true; }); } catch (e) {}
+    return ok;
+  }
+  function guard() {
+    var plates = [].slice.call(document.querySelectorAll('.nameplate'));
+    plates.forEach(function (np) { np.style.removeProperty('--np-fix'); });
+    var fixes = plates.map(function (np) {
+      var box = np.clientWidth, widest = 0;
+      np.querySelectorAll('.np-line').forEach(function (line) {
+        var r = document.createRange();
+        r.selectNodeContents(line);
+        widest = Math.max(widest, r.getBoundingClientRect().width);
+      });
+      return widest > box ? (box / widest * 0.998).toFixed(4) : '';
+    });
+    plates.forEach(function (np, i) { if (fixes[i]) np.style.setProperty('--np-fix', fixes[i]); });
+    return fixes.join(',');
+  }
+  var lastFix = '';
+  function onResize() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () { queued = false; var f = guard(); if (f !== lastFix) { lastFix = f; refresh(); } });
+  }
+  function markReady() {
+    if (npReady || !anybodyLoaded()) return;
+    npReady = true;
+    d.classList.add('np-ready');
+    lastFix = guard();
+    refresh();
+    window.addEventListener('resize', onResize, { passive: true });
+    waiters.splice(0).forEach(function (fn) { fn(); });
+  }
+  if (document.fonts && document.fonts.load) {
+    markReady();
+    Promise.all([document.fonts.load('850 100px Anybody'), document.fonts.load('italic 300 100px Anybody')]).then(markReady, function () {});
+    if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', markReady);
+    document.fonts.ready.then(function () { markReady(); refresh(); });
+  }
+
+  /* Act 1, the seam opens: a gold horizon draws, then the field splits open from it (day) or the lines draw (night). */
+  function runDawn() {
+    if (!d.classList.contains('dawn')) return;
+    window.__mmDawn = true;
+    try { sessionStorage.setItem('mm-dawn', '1'); } catch (e) {}
+    var hero = document.querySelector('.hero');
+    var sun = hero.querySelector('.sun');
+    var horizon = hero.querySelector('.horizon');
+    var drop = hero.querySelector('.seam--hero');
+    var rows = [].slice.call(document.querySelectorAll('[data-dawn]'));
+    var top = hero.getBoundingClientRect().top;
+    var hz = horizon.getBoundingClientRect().top - top + 1.5;
+    var H = hero.offsetHeight;
+    var day = !matchMedia('(prefers-color-scheme: dark)').matches;
+    var events = ['wheel', 'touchstart', 'keydown', 'pointerdown'];
+    var tl = G.timeline({ defaults: { ease: 'expo.out' }, onComplete: done });
+    function skip() { tl.progress(1); }
+    function done() {
+      d.classList.remove('dawn');
+      rows.concat([horizon, drop]).forEach(function (el) { el.classList.remove('is-day'); });
+      sun.style.removeProperty('clip-path');
+      sun.style.removeProperty('will-change');
+      G.set([horizon, drop], { clearProps: 'transform' });
+      events.forEach(function (e) { window.removeEventListener(e, skip); });
+    }
+    tl.fromTo(horizon, { scaleX: 0 }, { scaleX: 1, duration: 0.7 }, 0);
+    if (day) {
+      tl.call(function () { horizon.classList.add('is-day'); }, null, 0.45);
+      tl.fromTo(sun, { clipPath: 'inset(' + hz + 'px 0px ' + (H - hz) + 'px 0px)' },
+        { clipPath: 'inset(0px 0px 0px 0px)', duration: 0.9, onStart: function () { sun.style.willChange = 'clip-path'; } }, 0.45);
+      rows.forEach(function (el) {
+        var b = el.getBoundingClientRect();
+        var c = b.top + b.height / 2 - top;
+        var D = c < hz ? hz : H - hz;
+        var t = 0.45 - 0.09 * Math.log2(1 - Math.min(Math.abs(c - hz) / D, 0.999));
+        tl.call(function () { el.classList.add('is-day'); }, null, t);
+      });
+      tl.call(function () { drop.classList.add('is-day'); }, null, 0.84);
+      tl.fromTo(drop, { scaleY: 0 }, { scaleY: 1, duration: 0.55 }, 0.85);
+    } else {
+      tl.fromTo(drop, { scaleY: 0 }, { scaleY: 1, duration: 0.7 }, 0.35);
+    }
+    events.forEach(function (e) { window.addEventListener(e, skip, { once: true, passive: true }); });
+  }
+  try {
+    if (d.classList.contains('dawn')) {
+      if (!G) window.__mmEndDawn();
+      else if (npReady) runDawn();
+      else {
+        var left = 1500 - performance.now();
+        if (left <= 0) window.__mmEndDawn();
+        else {
+          var timer = setTimeout(window.__mmEndDawn, left);
+          waiters.push(function () { clearTimeout(timer); if (performance.now() <= 1500) runDawn(); else window.__mmEndDawn(); });
+        }
+      }
+    }
+  } catch (e) { window.__mmEndDawn(); }
+
+  /* Acts 2 and 3: the seam draws down each field as you scroll (and never retracts), then turns under the address. */
+  function closeRun() {
+    var box = document.querySelector('.email-box');
+    var run = document.querySelector('.seam--run');
+    if (!box || !run || box.getBoundingClientRect().top <= innerHeight * 0.85) return;
+    var uline = box.querySelector('.uline');
+    var dot = box.querySelector('.dot');
+    G.set(run, { clipPath: 'inset(0px 0px 100% 0px)' });
+    G.set(uline, { scaleX: 0 });
+    G.set(dot, { scale: 0 });
+    ST.create({ trigger: box, start: 'top 85%', once: true, onEnter: function () {
+      G.timeline({ defaults: { ease: 'expo.out' } })
+        .to(run, { clipPath: 'inset(0px 0px 0% 0px)', duration: 0.8 }, 0)
+        .to(uline, { scaleX: 1, duration: 0.6 }, 0.6)
+        .to(dot, { scale: 1, duration: 0.3 }, 1.1);
+    } });
+  }
+  function liveSeam() {
+    d.classList.add('seam-live');
+    document.querySelectorAll('.wrap[data-seam]').forEach(function (wrap) {
+      var seg = wrap.querySelector(':scope > .seam');
+      var nodes = [].slice.call(wrap.querySelectorAll('.node:not(.is-now)'));
+      var p = 0, stops = [];
+      G.set(seg, { scaleY: 0 });
+      var setY = G.quickTo(seg, 'scaleY', { duration: 0.5, ease: 'power3.out' });
+      function measure() {
+        var r = wrap.getBoundingClientRect();
+        stops = nodes.map(function (n) { var b = n.getBoundingClientRect(); return (b.top + b.height / 2 - r.top) / r.height; });
+      }
+      function latch(self) {
+        if (self.progress <= p) return;
+        p = self.progress;
+        setY(p);
+        nodes.forEach(function (n, i) { if (p >= stops[i]) n.classList.add('is-lit'); });
+        if (p >= 1) self.kill();
+      }
+      var st = ST.create({ trigger: wrap, start: 'top 75%', end: 'bottom 75%', onRefresh: measure, onUpdate: latch });
+      measure();
+      if (st.progress > 0) latch(st);
+    });
+    closeRun();
+    d.classList.remove('seam-pre');
+    return function () { d.classList.remove('seam-live'); };
+  }
+  try {
+    if (ST) G.matchMedia().add('(prefers-reduced-motion: no-preference)', liveSeam);
+  } catch (e) {}
+  d.classList.remove('seam-pre');
+
+  /* Copy address: only where the clipboard works; the status line speaks to screen readers. */
+  var btn = document.getElementById('copy-email');
+  var status = document.getElementById('copy-status');
+  if (btn && status && navigator.clipboard && window.isSecureContext) {
+    var label = btn.querySelector('.ghost__label');
+    var reset;
+    btn.hidden = false;
+    btn.addEventListener('click', function () {
+      clearTimeout(reset);
+      status.textContent = '';
+      navigator.clipboard.writeText(EMAIL).then(function () {
+        btn.setAttribute('data-state', 'copied');
+        label.textContent = 'Copied';
+        status.textContent = 'Email address copied';
+        reset = setTimeout(function () { btn.removeAttribute('data-state'); label.textContent = 'Copy address'; }, 2000);
+      }, function () {
+        status.textContent = 'Couldn’t copy. The address is ' + EMAIL + '.';
+      });
+    });
+  }
+
+  /* Johannesburg clock: re-ticks on each minute boundary. Not a live region. */
+  var clock = document.getElementById('jhb-time');
+  try {
+    var fmt = new Intl.DateTimeFormat('en-ZA', { timeZone: 'Africa/Johannesburg', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
+    (function tick() {
+      clock.textContent = fmt.format(new Date()) + ' in Johannesburg · SAST';
+      setTimeout(tick, 60000 - Date.now() % 60000 + 50);
+    })();
+  } catch (e) {}
+});
+</script>
+</body>
+</html>
