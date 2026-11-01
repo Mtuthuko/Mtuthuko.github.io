@@ -392,7 +392,14 @@ html .ll-toggle:focus-visible::after{ content:""; position:absolute; inset:-10px
 /* The line's pieces are never hit-tested, so the falcon reads the field behind them (it lands on the final dot). */
 .seam, .horizon, .node, .uline, .dot{ pointer-events:none; }
 
-
+/* The nameplate is a plate hinged on the horizon (the hinge is the line's centre): JS tips it back as the hero leaves. */
+.nameplate--hero{ transform-origin:50% calc(100% + 29.5px); }
+@media (min-width:1000px){ .nameplate--hero{ transform-origin:50% calc(100% + 41.5px); } }
+/* Work rows are plates too: they lean toward the pointer (data-tilt), hinged on the seam side so the tick stays on
+   the line. A full-width row does not also grow (the kit's 1.5% lift would push it into the gutter). */
+.work{ perspective:1600px; }
+.row[data-tilt]{ transform-origin:0 50%; scale:none !important; }
+@media print{ .nameplate--hero{ transform:none !important; } }
 </style>
 <script>
 (function (d) {
@@ -512,7 +519,7 @@ html .ll-toggle:focus-visible::after{ content:""; position:absolute; inset:-10px
       <section id="work" aria-labelledby="work-h">
         <h2 class="h2" id="work-h" data-perch data-reveal-3d>Live work you can click</h2>
         <ul class="work">
-          <li class="row row--feature">
+          <li class="row row--feature" data-tilt data-tilt-max="2.5">
             <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://vynklo.com" target="_blank" rel="noopener">Vynklo<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="quote">“Big ideas. Better together.”</p>
@@ -520,35 +527,35 @@ html .ll-toggle:focus-visible::after{ content:""; position:absolute; inset:-10px
             </div>
             <p class="label domain" data-reveal-3d>vynklo.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
-          <li class="row">
+          <li class="row" data-tilt data-tilt-max="2.5">
             <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://goldchat.co.za" target="_blank" rel="noopener">GoldChat<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">End-to-end encrypted chat, web + Android. About 5&nbsp;MB, compresses photos before they send, and works on a weak connection.</p>
             </div>
             <p class="label domain" data-reveal-3d>goldchat.co.za<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
-          <li class="row">
+          <li class="row" data-tilt data-tilt-max="2.5">
             <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://www.isinkwamtase.com" target="_blank" rel="noopener">iSinkwaMtase<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Group company site, 7 divisions.</p>
             </div>
             <p class="label domain" data-reveal-3d>isinkwamtase.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
-          <li class="row">
+          <li class="row" data-tilt data-tilt-max="2.5">
             <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://quickcashbuddy.com" target="_blank" rel="noopener">QuickCashBuddy<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Fintech brand landing site.</p>
             </div>
             <p class="label domain" data-reveal-3d>quickcashbuddy.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
-          <li class="row">
+          <li class="row" data-tilt data-tilt-max="2.5">
             <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://correction-point-polygraph.vercel.app" target="_blank" rel="noopener">Correction Point Polygraph<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Brochure site for a professional services firm.</p>
             </div>
             <p class="label domain" data-reveal-3d>correction-point-polygraph.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
-          <li class="row">
+          <li class="row" data-tilt data-tilt-max="2.5">
             <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://betslip-engine.vercel.app" target="_blank" rel="noopener">Slip Engine<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Live sports-data dashboard.</p>
@@ -814,6 +821,40 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.target.closest && e.target.closest('a[href^="mailto:"]')) celebrate();
   });
 
+  /* The 3D moment: the nameplate is a plate hinged on the horizon. As the hero leaves, it tips back onto the line,
+     tied to the scroll and reversible. It stays flat with reduced motion or while the moving effects are paused. */
+  (function () {
+    var np = document.querySelector('.nameplate--hero');
+    var below = document.querySelector('.hero__below');
+    if (!np || !below || !window.requestAnimationFrame) return;
+    var rm = matchMedia('(prefers-reduced-motion: reduce)');
+    var range = 1, depth = 1000, queued = false, tipped = false;
+    function measure() {
+      range = Math.max(1, below.getBoundingClientRect().top + window.scrollY);
+      depth = Math.max(720, np.offsetWidth);
+    }
+    function paint() {
+      queued = false;
+      var ll = window.__livingLayer;
+      var p = rm.matches || (ll && !ll.isEnabled()) ? 0 : Math.min(1, Math.max(0, window.scrollY / range));
+      if (p <= 0) {
+        if (tipped) { np.style.transform = ''; np.style.willChange = ''; tipped = false; }
+        return;
+      }
+      tipped = true;
+      np.style.willChange = 'transform';
+      np.style.transform = 'perspective(' + depth + 'px) rotateX(' + (64 * p * p * (3 - 2 * p)).toFixed(2) + 'deg)';
+    }
+    function queue() { if (!queued) { queued = true; requestAnimationFrame(paint); } }
+    function remeasure() { measure(); queue(); }
+    measure();
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', remeasure, { passive: true });
+    document.addEventListener('click', function (e) { if (e.target.closest && e.target.closest('.ll-toggle')) queue(); });
+    if (rm.addEventListener) rm.addEventListener('change', queue);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure);
+    queue();
+  })();
 });
 </script>
 </body>
