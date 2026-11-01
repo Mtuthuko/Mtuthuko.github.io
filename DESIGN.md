@@ -17,8 +17,9 @@ Use this file as a guide: what each piece is, why it is built that way, and how 
 | `assets/mm.svg`, `favicon.ico`, `apple-touch-icon.png` | The MM seam mark as browser icons. |
 | `assets/og.png` | The 1200×630 share card that WhatsApp and LinkedIn show. It was rendered locally from the page's own CSS and fonts. |
 | `assets/portrait.webp` | His own photo (640×640), shown in natural colour. |
+| `assets/living-layer.js` | The shared Living Layer kit: the falcon and the 3D touches (§7.2). It is a plain copy of the kit. Never edit it here. |
 
-**Why CSS and JS are inline:** the site's HTML check (html-validate) asks every external stylesheet and script to carry an integrity hash. Google Fonts cannot carry one, because its CSS changes per browser. So the fonts load through `@import` as the first rule of the inline `<style>`, and the two GSAP scripts load from cdnjs with exact `sha384` hashes.
+**Why CSS and JS are inline:** the site's HTML check (html-validate) asks every external stylesheet and script to carry an integrity hash. Google Fonts cannot carry one, because its CSS changes per browser. So the fonts load through `@import` as the first rule of the inline `<style>`, and the two GSAP scripts load from cdnjs with exact `sha384` hashes. The one script file is the shared kit, which loads with its own hash. When you copy in a new version of the kit, update that hash too (`openssl dgst -sha384 -binary assets/living-layer.js | openssl base64 -A`), or the browser will refuse the file and the page will simply be still.
 
 **Hosting rules (GitHub Pages):** no `CNAME`, no `.nojekyll`, no front matter. No file or folder may start with `_`, `.` or `#`. Use relative paths (`assets/…`) in pages at the root, and root-relative paths (`/assets/…`) in `404.html`, because that page is served at any depth.
 
@@ -164,7 +165,7 @@ The name is set as two lines that end exactly flush with both edges, at every sc
 - **Breakpoints:** 480px (buttons go full width below it), 600px and 1000px.
 - **Shape:** corners are square everywhere (buttons, rows, the portrait). Circles are only for the nodes and the final dot. The line has round caps. The single 12px radius is the line's last turn.
 - **Lines:** 3px for the seam and horizon, 2px for rules and borders, 3px for focus rings.
-- **Depth:** none. No shadows. Depth comes from swapping fields and from the row hover band.
+- **Depth:** no shadows, ever. Depth comes from swapping fields, from the row hover band, and from real 3D: plates that tip and lean (§7.2).
 
 ---
 
@@ -184,6 +185,7 @@ All of these live in `index.html`'s `<style>`. Each one reads field tokens, so i
 - **Websites bridge** (`.pitch`): a sentence-length heading with a node on the line, a lead line and a plate.
 - **Close** (`.close-run`): the line comes down, turns at a 12px corner, underlines the email (`.uline`) and ends in a dot. The email has a `<wbr>` before "@" so it only ever wraps there. A clock shows the time in Johannesburg.
 - **Portrait** (`.portrait`): square, natural colour, with a 2px "plate mark" frame 12px outside it. Never a circle crop, never a filter.
+- **Pause button** (`.ll-toggle`, added by the living layer): a 44px square ink plate with a 2px gold edge in the bottom-right corner, so it reads on gold and on ink. The kit's glass and drop shadow are switched off. Its focus ring is two-tone (gold, with an ink band outside it), so it shows on either field. It is the last Tab stop. On phones the footer text keeps clear of that corner.
 - **Icons:** drawn as inline SVG in one stroke family (`fill="none" stroke="currentColor"`, round caps and joins), always `aria-hidden="true" focusable="false"`. The set: arrow, external ↗, copy, check, and the MM mark (one zigzag line that reads as a double M and as a ridge). Never use emoji or text arrows as icons.
 
 ### For the services page
@@ -198,7 +200,9 @@ These are defined by the system for *Websites by Ntuthuko*:
 
 ## 7. Motion
 
-GSAP 3.13.0 and its ScrollTrigger plugin, from cdnjs, carry one idea in three acts. Everything else is still.
+Two layers move on the home page. The **seam** (GSAP 3.13.0 and its ScrollTrigger plugin, from cdnjs) carries one idea in three acts (§7.1). The **living layer** adds a main character, a falcon that follows the reader down, and plates that move in real 3D (§7.2). Both stop for reduced motion, and the 404 page stays still.
+
+### 7.1 The seam
 
 1. **Dawn (first visit only).** It plays when motion is allowed, it is the first view in this browser session, and the address has no `#section`. A gold horizon draws (0–0.7s), then the gold field opens up and down from that line (0.45–1.35s) while each row of text swaps to its day colours as the edge passes it. Then the line drops down into the story. About 1.4s by day; at night only the lines draw (about 1.05s). Any scroll, tap, click or key press jumps to the end. If the fonts or GSAP are slow (not ready by 1.5s), the page simply fades to its final state.
 2. **The line draws down each section as you scroll.** It follows the scroll, never goes back up, and fills each timeline node as it reaches it.
@@ -213,12 +217,28 @@ Small state changes use the motion tokens: `--ease-out` (`cubic-bezier(.16,1,.3,
 | Button fill, underline, ghost hover, skip link | 160ms |
 | Button arrow slide (4px) | 200ms |
 
+### 7.2 The living layer
+
+The kit is `assets/living-layer.js`. It is configured once, at the end of `index.html`'s script, and only on the home page.
+
+- **The falcon** is a flat silhouette with no glow, shadow or shading. Over gold fields it is ink with a gold eye, and over ink fields it is gold with an ink eye. Its colours are read from the tokens (`--ink`, `--gold-type`, `--gold-field`), so Night uses Night's golds. It arrives from the left once the dawn has opened the field (after 1.8 s, or 0.9 s on later visits), soars in the open sky at the top right, and follows the reader down. When the reader stops, it lands beside "Hello from", a section heading or the first ledger role, or on the final dot of the line under the email. When it lands it faces up and out.
+- **It celebrates** (one loop) when someone taps it, copies the address, or opens any email link.
+- **No dust.** The kit's flat flakes turn amber on gold fields and translucent on ink, which adds tones the two-colour rule does not allow (`dust: false`).
+- **Perches** (`data-perch`) are short targets that sit clear of the right edge. A heading whose second line runs longer than its first is not a perch, because at phone width the falcon's tail would sit on that second line.
+- **The nameplate tips back.** This is the signature 3D moment. The hero name is a plate hinged on the horizon line. As the hero scrolls away, it tips back onto the line (`rotateX` up to 64°, with the plate's width as the perspective). It is tied to the scroll and reverses when you scroll back. It stays flat with reduced motion, or while the moving effects are paused.
+- **Work rows are plates** (`data-tilt`, at most 2.5°). With a mouse they lean toward the pointer. They are hinged on the seam side, so the tick stays on the line, and they never grow into the gutter.
+- **The sky** (`.sky`) holds three far birds, drawn in the MM mark's stroke. Each drifts at its own depth (`data-depth`).
+- **Reveals** (`data-reveal-3d`): headings below the fold, the portrait, each ledger role and each work row's content rise into place, tipped back. Anything on screen at load is never hidden. Nothing is hidden without JS or with reduced motion.
+- **Magnetic plates** (`data-magnetic`): the two primary buttons ("Say hello back" and "Get a quote in 24 hours") lean a few pixels toward the pointer.
+- **Pause.** The button in the corner (§6) pauses everything that moves (falcon, reveals, tilt, depth and the nameplate), and the choice is remembered. With reduced motion everything starts paused and the page is complete.
+- **Layering:** the canvases sit at z-index 7 and 8, the pause button at 9, and the skip link above them at 10. The line's pieces have `pointer-events:none`, so the falcon reads the field behind them and keeps the right colours.
+
 Rules:
 
-- Only `transform` and `clip-path` animate. `will-change` is set only on the dawn layer while it plays.
-- **Text is never hidden as a starting state.** The only thing clipped is the textless gold layer behind the hero.
-- With **reduced motion**, there is no dawn, the line is fully drawn, every node is filled, the arrow does not slide and the row band changes instantly. Without JS, without the CDN or without web fonts, the whole page still shows.
-- No fade-ups per section, no parallax, no cursor effects, no marquees, nothing that loops or autoplays.
+- The seam animates only `transform` and `clip-path`. The living layer moves the canvases and plates with `transform`, `translate` and `rotate`. `will-change` is set only while something moves.
+- **Text is never hidden in the HTML or by CSS alone.** The only thing clipped at load is the textless gold layer behind the hero. Below-the-fold reveals are hidden by JS after load, and only when motion is allowed.
+- With **reduced motion**, there is no dawn, the line is fully drawn, every node is filled, the arrow does not slide and the row band changes instantly. The living layer starts paused and nothing tips, leans or drifts. Without JS, without the CDN or without web fonts, the whole page still shows.
+- No marquees, no typing effects, no autoplaying video or sound. The falcon is the only thing that moves on its own, and it can always be paused.
 
 ---
 
@@ -243,13 +263,14 @@ The parts a browser draws by default are themed too:
 - Targets: 44px for nav, buttons and standalone links.
 - At 390px: no sideways scroll, buttons full width, long web addresses can wrap.
 - Every animation respects reduced motion; nothing flashes; the dawn plays once and can be skipped.
+- The pause button for moving effects works with the keyboard and the mouse, says its state (`aria-pressed`), and remembers it.
 
 ---
 
 ## 10. How to add a new page in this style
 
 1. **Start from a copy of `404.html`.** It is the smallest complete page: the head (fonts, icons, theme colours), the palette and field tokens, the base styles, the skip link, the header with the mark, the plate button and the footer. Copy any other component you need from `index.html`'s `<style>`, keeping its section heading comment.
-2. **Keep the head in this order:** charset, viewport, title, description, `color-scheme`, the two `theme-color` tags, icon links, the two Google Fonts `preconnect` links, then one inline `<style>` whose **first line** is the Google Fonts `@import`. If you need motion, add the two GSAP `<script>` tags with their `integrity` hashes, copied exactly from `index.html`.
+2. **Keep the head in this order:** charset, viewport, title, description, `color-scheme`, the two `theme-color` tags, icon links, the two Google Fonts `preconnect` links, then one inline `<style>` whose **first line** is the Google Fonts `@import`. If you need motion, add the two GSAP `<script>` tags with their `integrity` hashes, copied exactly from `index.html`. If the page is one people browse (not one they work in), it can also have the falcon: add the kit's `<script>` tag with its hash and the living-layer block from the end of `index.html`'s script.
 3. **Give every section a field:** `.field-hero` first, then alternate `.field-ink` and `.field-gold`. Do not paint colours by hand.
 4. **Put content in the lane:** `<div class="wrap lane" data-seam><span class="seam" aria-hidden="true"></span> … </div>`. The line will line up with every other section.
 5. **Write the headings first:** one `h1`, then one `h2` per section. Let the heading speak; no small label above it.
