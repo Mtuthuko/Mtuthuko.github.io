@@ -335,6 +335,7 @@ html.np-ready .np-line{ font-size:calc(var(--np) * var(--np-fix, 1)); }
 /* 17. Footer: the line has ended, so it sits at the gutter */
 .footer{ padding-block:32px; border-top:2px solid var(--rule); }
 .footer p{ font:400 var(--t-small)/1.5 var(--font-text); color:var(--fg-2); }
+@media (max-width:599.98px){ .footer p{ padding-right:56px; } } /* clear of the pause button in the corner */
 
 /* 18. The seam opens: first visit only, motion allowed (JS adds html.dawn) */
 html.dawn .horizon{ transform:scaleX(0); }
@@ -363,6 +364,35 @@ html.dawn-fade .field-hero, html.dawn-fade .field-hero *{ transition:color 400ms
   *,*::before,*::after{ transition-duration:.01ms !important; transition-delay:0s !important; animation:none !important; }
   .plate:hover .arrow{ transform:none; }
 }
+
+/* 20. The living layer: a flat falcon, the hero sky and the plates in 3D.
+   The kit (assets/living-layer.js) is shared and copied unchanged; these rules dress it in Gold Seam. */
+/* The pause button is a plate: square, ink, a gold edge. The kit's glass and drop shadow go. */
+html .ll-toggle{ width:44px; height:44px; border-radius:0; border:2px solid var(--gold-type); background:var(--ink); color:var(--gold-type);
+                 -webkit-backdrop-filter:none; backdrop-filter:none; box-shadow:none;
+                 transition:background-color var(--dur-swap) var(--ease-out); }
+html .ll-toggle:hover{ transform:none; background:var(--ink-raised); }
+html .ll-toggle[aria-pressed="false"]{ opacity:1; }
+/* Two-tone ring: gold reads on ink fields, the ink band outside it reads on gold fields. */
+html .ll-toggle:focus-visible{ outline:3px solid var(--gold-type); outline-offset:2px; }
+html .ll-toggle:focus-visible::after{ content:""; position:absolute; inset:-10px; border:3px solid var(--ink); pointer-events:none; }
+
+/* Hero sky: three far birds in the MM mark's stroke, each drifting at its own depth (data-depth). */
+.sky{ position:absolute; z-index:var(--z-sun); top:72px; left:0; right:0; height:56px; pointer-events:none; color:var(--seam); }
+.far{ position:absolute; display:block; height:auto; overflow:visible; }
+.far-1{ width:22px; top:6px; right:calc(var(--gutter) + 7%); }
+.far-2{ width:15px; top:20px; right:calc(var(--gutter) + 21%); }
+.far-3{ display:none; }
+@media (min-width:600px){
+  .far-1{ width:30px; top:4px; right:calc(var(--gutter) + 6%); }
+  .far-2{ width:21px; top:22px; right:calc(var(--gutter) + 19%); }
+  .far-3{ display:block; width:15px; top:0; right:calc(var(--gutter) + 13%); }
+}
+
+/* The line's pieces are never hit-tested, so the falcon reads the field behind them (it lands on the final dot). */
+.seam, .horizon, .node, .uline, .dot{ pointer-events:none; }
+
+
 </style>
 <script>
 (function (d) {
@@ -384,6 +414,7 @@ html.dawn-fade .field-hero, html.dawn-fade .field-hero *{ transition:color 400ms
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous" defer></script>
+<script src="assets/living-layer.js" integrity="sha384-V87qhorFjFPmHQcW8Dbs9saa7ISiIzZ+UfhveTvfwnwBcE23GjW9lKeckSXtUTzn" defer></script>
 </head>
 <body>
 <a class="skip field-hero" href="#main">Skip to content</a>
@@ -403,8 +434,13 @@ html.dawn-fade .field-hero, html.dawn-fade .field-hero *{ transition:color 400ms
 
   <section class="hero field-hero" id="top" aria-labelledby="hello-name">
     <div class="sun" aria-hidden="true"></div>
+    <div class="sky" aria-hidden="true" data-dawn>
+      <svg class="far far-1" viewBox="0 0 26 10" focusable="false" data-depth="0.22"><polyline points="2,8 7.5,2.5 13,7 18.5,2.5 24,8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="far far-2" viewBox="0 0 26 10" focusable="false" data-depth="0.14"><polyline points="2,8 7.5,2.5 13,7 18.5,2.5 24,8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="far far-3" viewBox="0 0 26 10" focusable="false" data-depth="0.08"><polyline points="2,8 7.5,2.5 13,7 18.5,2.5 24,8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
     <div class="wrap">
-      <h1 class="nameplate nameplate--hero" id="hello-name"><span class="hello" data-dawn>Hello from</span> <span class="np-line np-1" data-dawn>Mtuthuko</span> <span class="np-line np-2" data-dawn>Mngomezulu</span></h1>
+      <h1 class="nameplate nameplate--hero" id="hello-name"><span class="hello" data-dawn data-perch>Hello from</span> <span class="np-line np-1" data-dawn>Mtuthuko</span> <span class="np-line np-2" data-dawn>Mngomezulu</span></h1>
       <div class="hero__below">
         <span class="horizon" aria-hidden="true"></span>
         <span class="seam seam--hero" aria-hidden="true"></span>
@@ -416,7 +452,7 @@ html.dawn-fade .field-hero, html.dawn-fade .field-hero *{ transition:color 400ms
           <div class="hero__act" data-dawn>
             <p class="lead">Mathematics at Wits — the University of the Witwatersrand in Johannesburg — then years on the data floors of one of South Africa’s big four banks, and now building generative AI for enterprise software.</p>
             <div class="cta-row">
-              <a class="plate" href="mailto:mngomezuluntuthuko@gmail.com?subject=Hello">Say hello back<span class="vh"> by email</span><svg class="arrow" viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a class="plate" href="mailto:mngomezuluntuthuko@gmail.com?subject=Hello" data-magnetic>Say hello back<span class="vh"> by email</span><svg class="arrow" viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
               <a class="link link--solo" href="https://www.linkedin.com/in/mngomezulu/" target="_blank" rel="noopener">See my LinkedIn<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
           </div>
@@ -428,36 +464,36 @@ html.dawn-fade .field-hero, html.dawn-fade .field-hero *{ transition:color 400ms
   <section class="field-ink field-story" id="story" aria-labelledby="story-h">
     <div class="wrap lane" data-seam><span class="seam" aria-hidden="true"></span>
       <div class="story">
-        <h2 class="h2" id="story-h">The short version</h2>
-        <figure class="portrait"><img src="assets/portrait.webp" width="640" height="640" alt="Mtuthuko Mngomezulu" loading="lazy" decoding="async"></figure>
+        <h2 class="h2" id="story-h" data-perch data-reveal-3d>The short version</h2>
+        <figure class="portrait" data-reveal-3d><img src="assets/portrait.webp" width="640" height="640" alt="Mtuthuko Mngomezulu" loading="lazy" decoding="async"></figure>
         <ol class="ledger">
-          <li>
+          <li data-reveal-3d>
             <span class="node is-now" aria-hidden="true"></span>
             <p class="label when">Now</p>
-            <div class="what"><h3 class="h3">Generative-AI Engineer</h3><p class="detail">Telephony voice agents, conversational AI, recommendation and price-estimation systems</p></div>
+            <div class="what"><h3 class="h3" data-perch>Generative-AI Engineer</h3><p class="detail">Telephony voice agents, conversational AI, recommendation and price-estimation systems</p></div>
           </li>
-          <li>
+          <li data-reveal-3d>
             <span class="node" aria-hidden="true"></span>
             <p class="label when">to <span class="tnum">2025</span></p>
             <div class="what"><h3 class="h3">Senior Data Scientist</h3><p class="detail">FNB South Africa — FirstRand group</p></div>
           </li>
-          <li>
+          <li data-reveal-3d>
             <span class="node" aria-hidden="true"></span>
             <p class="label when">before</p>
             <div class="what"><h3 class="h3">Data Scientist II</h3><p class="detail">FNB South Africa — FirstRand group</p></div>
           </li>
-          <li>
+          <li data-reveal-3d>
             <span class="node" aria-hidden="true"></span>
             <p class="label when">2024</p>
             <div class="what"><h3 class="h3">Founder, iSinkwaMtase</h3><p class="detail">Creative venture studio from KwaThema — music, media, AI, technology</p>
               <a class="link link--solo" href="https://www.isinkwamtase.com" target="_blank" rel="noopener">isinkwamtase.com<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
           </li>
-          <li>
+          <li data-reveal-3d>
             <span class="node" aria-hidden="true"></span>
             <p class="label when">2022</p>
             <div class="what"><h3 class="h3">IEEE-published researcher</h3><p class="detail">ICEET 2022, recommendation systems, with the University of the Witwatersrand</p></div>
           </li>
-          <li>
+          <li data-reveal-3d>
             <span class="node" aria-hidden="true"></span>
             <p class="label when">Wits</p>
             <div class="what"><h3 class="h3">Computer Science &amp; Applied Mathematics</h3><p class="detail">Honours in Data Science</p></div>
@@ -474,58 +510,58 @@ html.dawn-fade .field-hero, html.dawn-fade .field-hero *{ transition:color 400ms
   <div class="field-gold field-work">
     <div class="wrap lane" data-seam><span class="seam" aria-hidden="true"></span>
       <section id="work" aria-labelledby="work-h">
-        <h2 class="h2" id="work-h">Live work you can click</h2>
+        <h2 class="h2" id="work-h" data-perch data-reveal-3d>Live work you can click</h2>
         <ul class="work">
           <li class="row row--feature">
-            <div class="row__main">
+            <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://vynklo.com" target="_blank" rel="noopener">Vynklo<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="quote">“Big ideas. Better together.”</p>
               <p class="desc">A new home for brands and creators.</p>
             </div>
-            <p class="label domain">vynklo.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain" data-reveal-3d>vynklo.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
           <li class="row">
-            <div class="row__main">
+            <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://goldchat.co.za" target="_blank" rel="noopener">GoldChat<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">End-to-end encrypted chat, web + Android. About 5&nbsp;MB, compresses photos before they send, and works on a weak connection.</p>
             </div>
-            <p class="label domain">goldchat.co.za<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain" data-reveal-3d>goldchat.co.za<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
           <li class="row">
-            <div class="row__main">
+            <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://www.isinkwamtase.com" target="_blank" rel="noopener">iSinkwaMtase<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Group company site, 7 divisions.</p>
             </div>
-            <p class="label domain">isinkwamtase.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain" data-reveal-3d>isinkwamtase.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
           <li class="row">
-            <div class="row__main">
+            <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://quickcashbuddy.com" target="_blank" rel="noopener">QuickCashBuddy<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Fintech brand landing site.</p>
             </div>
-            <p class="label domain">quickcashbuddy.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain" data-reveal-3d>quickcashbuddy.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
           <li class="row">
-            <div class="row__main">
+            <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://correction-point-polygraph.vercel.app" target="_blank" rel="noopener">Correction Point Polygraph<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Brochure site for a professional services firm.</p>
             </div>
-            <p class="label domain">correction-point-polygraph.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain" data-reveal-3d>correction-point-polygraph.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
           <li class="row">
-            <div class="row__main">
+            <div class="row__main" data-reveal-3d>
               <h3 class="h3"><a href="https://betslip-engine.vercel.app" target="_blank" rel="noopener">Slip Engine<span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Live sports-data dashboard.</p>
             </div>
-            <p class="label domain">betslip-engine.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain" data-reveal-3d>betslip-engine.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
         </ul>
       </section>
       <section id="websites" class="pitch" aria-labelledby="websites-h">
-        <h2 class="pitch-h" id="websites-h"><span class="node is-now" aria-hidden="true"></span>A website that loads fast, reads clearly on a phone, and gets you the enquiry.</h2>
-        <div class="pitch__act">
+        <h2 class="pitch-h" id="websites-h" data-reveal-3d><span class="node is-now" aria-hidden="true"></span>A website that loads fast, reads clearly on a phone, and gets you the enquiry.</h2>
+        <div class="pitch__act" data-reveal-3d>
           <p class="lead">Fixed price, fixed timeline, hosted on accounts you own. No retainers, no monthly builder fees unless you want them.</p>
-          <a class="plate" href="mailto:mngomezuluntuthuko@gmail.com?subject=Website%20quote">Get a quote in 24 hours<svg class="arrow" viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="plate" href="mailto:mngomezuluntuthuko@gmail.com?subject=Website%20quote" data-magnetic>Get a quote in 24 hours<svg class="arrow" viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </section>
     </div>
@@ -535,8 +571,8 @@ html.dawn-fade .field-hero, html.dawn-fade .field-hero *{ transition:color 400ms
     <div class="wrap lane">
       <div class="close-run">
         <span class="seam seam--run" aria-hidden="true"></span>
-        <h2 class="nameplate nameplate--close" id="hello-h"><span class="np-line">Say hello back</span></h2>
-        <p class="email-box"><a class="email" href="mailto:mngomezuluntuthuko@gmail.com?subject=Hello">mngomezuluntuthuko@<wbr>gmail.com</a><span class="uline" aria-hidden="true"></span><span class="dot" aria-hidden="true"></span></p>
+        <h2 class="nameplate nameplate--close" id="hello-h" data-reveal-3d><span class="np-line">Say hello back</span></h2>
+        <p class="email-box"><a class="email" href="mailto:mngomezuluntuthuko@gmail.com?subject=Hello">mngomezuluntuthuko@<wbr>gmail.com</a><span class="uline" aria-hidden="true"></span><span class="dot" aria-hidden="true" data-perch></span></p>
       </div>
       <div class="close-actions">
         <button class="ghost" type="button" id="copy-email" hidden><svg class="ico ico-copy" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="5" width="8.5" height="8.5"/><path d="M11 2.5H2.5V11"/></svg><svg class="ico ico-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 8.5 6.5 12 13 4.5"/></svg><span class="ghost__label">Copy address</span></button>
@@ -732,6 +768,7 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.setAttribute('data-state', 'copied');
         label.textContent = 'Copied';
         status.textContent = 'Email address copied';
+        celebrate();
         reset = setTimeout(function () { btn.removeAttribute('data-state'); label.textContent = 'Copy address'; }, 2000);
       }, function () {
         status.textContent = 'Couldn’t copy. The address is ' + EMAIL + '.';
@@ -748,6 +785,35 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(tick, 60000 - Date.now() % 60000 + 50);
     })();
   } catch (e) {}
+
+  /* The living layer: a flat falcon follows the reader, ink on gold fields and gold on ink ones, read from the tokens
+     so Night gets its own golds. No dust: flakes would add tones the two-colour rule does not allow.
+     Reduced motion starts it paused; the plate in the corner pauses or resumes everything that moves. */
+  function celebrate() { try { if (window.__livingLayer) window.__livingLayer.celebrate(); } catch (e) {} }
+  try {
+    if (window.LivingLayer) {
+      var cs = getComputedStyle(d);
+      var ink = cs.getPropertyValue('--ink').trim(), gold = cs.getPropertyValue('--gold-type').trim();
+      var narrow = innerWidth < 720;
+      window.LivingLayer.init({
+        character: 'falcon', look: 'flat', finish: 'matte', size: 80,
+        colors: { primary: ink, secondary: ink, dark: ink, accent: cs.getPropertyValue('--gold-field').trim(), light: gold },
+        colorsOnDark: { primary: gold, secondary: gold, dark: gold, accent: ink, light: ink },
+        dust: false,
+        /* It enters from the left and soars on the right; side 'left' makes it face up and out when it lands. */
+        side: 'left',
+        lane: { x: narrow ? 0.86 : 0.91, y: narrow ? 0.13 : 0.16 }, /* in the open sky above the nameplate */
+        introDelay: d.classList.contains('dawn') ? 1800 : 900, /* arrives once the gold field has opened */
+        zIndex: 8,                                             /* under the skip link (--z-skip: 10) */
+        toggle: { position: 'bottom-right', bg: ink, fg: gold, line: gold }
+      });
+    }
+  } catch (e) {}
+  /* Success moments: an email is on its way (any mailto) or the address is copied. */
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('a[href^="mailto:"]')) celebrate();
+  });
+
 });
 </script>
 </body>
