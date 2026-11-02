@@ -376,6 +376,8 @@ html .ll-toggle[aria-pressed="false"]{ opacity:1; }
 /* Two-tone ring: gold reads on ink fields, the ink band outside it reads on gold fields. */
 html .ll-toggle:focus-visible{ outline:3px solid var(--gold-type); outline-offset:2px; }
 html .ll-toggle:focus-visible::after{ content:""; position:absolute; inset:-10px; border:3px solid var(--ink); pointer-events:none; }
+/* The kit draws its small second sparkle at 70% opacity, a third tone; here both sparkles are solid gold. */
+html .ll-toggle svg path[opacity]{ opacity:1; }
 
 /* Hero sky: three far birds in the MM mark's stroke, each drifting at its own depth (data-depth). */
 .sky{ position:absolute; z-index:var(--z-sun); top:72px; left:0; right:0; height:56px; pointer-events:none; color:var(--seam); }
@@ -459,7 +461,7 @@ html .ll-toggle:focus-visible::after{ content:""; position:absolute; inset:-10px
           <div class="hero__act" data-dawn>
             <p class="lead">Mathematics at Wits — the University of the Witwatersrand in Johannesburg — then years on the data floors of one of South Africa’s big four banks, and now building generative AI for enterprise software.</p>
             <div class="cta-row">
-              <a class="plate" href="mailto:mngomezuluntuthuko@gmail.com?subject=Hello" data-magnetic>Say hello back<span class="vh"> by email</span><svg class="arrow" viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a class="plate" href="mailto:mngomezuluntuthuko@gmail.com?subject=Hello" data-magnetic><span class="plate__label">Say hello back</span><span class="vh"> by email</span><svg class="arrow" viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
               <a class="link link--solo" href="https://www.linkedin.com/in/mngomezulu/" target="_blank" rel="noopener">See my LinkedIn<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
             </div>
           </div>
@@ -474,35 +476,35 @@ html .ll-toggle:focus-visible::after{ content:""; position:absolute; inset:-10px
         <h2 class="h2" id="story-h" data-perch data-reveal-3d>The short version</h2>
         <figure class="portrait" data-reveal-3d><img src="assets/portrait.webp" width="640" height="640" alt="Mtuthuko Mngomezulu" loading="lazy" decoding="async"></figure>
         <ol class="ledger">
-          <li data-reveal-3d>
+          <li>
             <span class="node is-now" aria-hidden="true"></span>
-            <p class="label when">Now</p>
+            <p class="label when" data-perch>Now</p>
             <div class="what"><h3 class="h3" data-perch>Generative-AI Engineer</h3><p class="detail">Telephony voice agents, conversational AI, recommendation and price-estimation systems</p></div>
           </li>
-          <li data-reveal-3d>
+          <li>
             <span class="node" aria-hidden="true"></span>
-            <p class="label when">to <span class="tnum">2025</span></p>
+            <p class="label when" data-perch>to <span class="tnum">2025</span></p>
             <div class="what"><h3 class="h3">Senior Data Scientist</h3><p class="detail">FNB South Africa — FirstRand group</p></div>
           </li>
-          <li data-reveal-3d>
+          <li>
             <span class="node" aria-hidden="true"></span>
-            <p class="label when">before</p>
+            <p class="label when" data-perch>before</p>
             <div class="what"><h3 class="h3">Data Scientist II</h3><p class="detail">FNB South Africa — FirstRand group</p></div>
           </li>
-          <li data-reveal-3d>
+          <li>
             <span class="node" aria-hidden="true"></span>
-            <p class="label when">2024</p>
+            <p class="label when" data-perch>2024</p>
             <div class="what"><h3 class="h3">Founder, iSinkwaMtase</h3><p class="detail">Creative venture studio from KwaThema — music, media, AI, technology</p>
               <a class="link link--solo" href="https://www.isinkwamtase.com" target="_blank" rel="noopener">isinkwamtase.com<span class="vh"> (opens in a new tab)</span><svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
           </li>
-          <li data-reveal-3d>
+          <li>
             <span class="node" aria-hidden="true"></span>
-            <p class="label when">2022</p>
+            <p class="label when" data-perch>2022</p>
             <div class="what"><h3 class="h3">IEEE-published researcher</h3><p class="detail">ICEET 2022, recommendation systems, with the University of the Witwatersrand</p></div>
           </li>
-          <li data-reveal-3d>
+          <li>
             <span class="node" aria-hidden="true"></span>
-            <p class="label when">Wits</p>
+            <p class="label when" data-perch>Wits</p>
             <div class="what"><h3 class="h3">Computer Science &amp; Applied Mathematics</h3><p class="detail">Honours in Data Science</p></div>
           </li>
         </ol>
@@ -520,55 +522,55 @@ html .ll-toggle:focus-visible::after{ content:""; position:absolute; inset:-10px
         <h2 class="h2" id="work-h" data-perch data-reveal-3d>Live work you can click</h2>
         <ul class="work">
           <li class="row row--feature" data-tilt data-tilt-max="2.5">
-            <div class="row__main" data-reveal-3d>
-              <h3 class="h3"><a href="https://vynklo.com" target="_blank" rel="noopener">Vynklo<span class="vh"> (opens in a new tab)</span></a></h3>
+            <div class="row__main">
+              <h3 class="h3"><a href="https://vynklo.com" target="_blank" rel="noopener"><span class="nm" data-perch>Vynklo</span><span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="quote">“Big ideas. Better together.”</p>
               <p class="desc">A new home for brands and creators.</p>
             </div>
-            <p class="label domain" data-reveal-3d>vynklo.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain">vynklo.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
           <li class="row" data-tilt data-tilt-max="2.5">
-            <div class="row__main" data-reveal-3d>
-              <h3 class="h3"><a href="https://goldchat.co.za" target="_blank" rel="noopener">GoldChat<span class="vh"> (opens in a new tab)</span></a></h3>
+            <div class="row__main">
+              <h3 class="h3"><a href="https://goldchat.co.za" target="_blank" rel="noopener"><span class="nm" data-perch>GoldChat</span><span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">End-to-end encrypted chat, web + Android. About 5&nbsp;MB, compresses photos before they send, and works on a weak connection.</p>
             </div>
-            <p class="label domain" data-reveal-3d>goldchat.co.za<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain">goldchat.co.za<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
           <li class="row" data-tilt data-tilt-max="2.5">
-            <div class="row__main" data-reveal-3d>
-              <h3 class="h3"><a href="https://www.isinkwamtase.com" target="_blank" rel="noopener">iSinkwaMtase<span class="vh"> (opens in a new tab)</span></a></h3>
+            <div class="row__main">
+              <h3 class="h3"><a href="https://www.isinkwamtase.com" target="_blank" rel="noopener"><span class="nm" data-perch>iSinkwaMtase</span><span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Group company site, 7 divisions.</p>
             </div>
-            <p class="label domain" data-reveal-3d>isinkwamtase.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain">isinkwamtase.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
           <li class="row" data-tilt data-tilt-max="2.5">
-            <div class="row__main" data-reveal-3d>
-              <h3 class="h3"><a href="https://quickcashbuddy.com" target="_blank" rel="noopener">QuickCashBuddy<span class="vh"> (opens in a new tab)</span></a></h3>
+            <div class="row__main">
+              <h3 class="h3"><a href="https://quickcashbuddy.com" target="_blank" rel="noopener"><span class="nm" data-perch>QuickCashBuddy</span><span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Fintech brand landing site.</p>
             </div>
-            <p class="label domain" data-reveal-3d>quickcashbuddy.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain">quickcashbuddy.com<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
           <li class="row" data-tilt data-tilt-max="2.5">
-            <div class="row__main" data-reveal-3d>
-              <h3 class="h3"><a href="https://correction-point-polygraph.vercel.app" target="_blank" rel="noopener">Correction Point Polygraph<span class="vh"> (opens in a new tab)</span></a></h3>
+            <div class="row__main">
+              <h3 class="h3"><a href="https://correction-point-polygraph.vercel.app" target="_blank" rel="noopener"><span class="nm" data-perch>Correction Point Polygraph</span><span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Brochure site for a professional services firm.</p>
             </div>
-            <p class="label domain" data-reveal-3d>correction-point-polygraph.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain">correction-point-polygraph.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
           <li class="row" data-tilt data-tilt-max="2.5">
-            <div class="row__main" data-reveal-3d>
-              <h3 class="h3"><a href="https://betslip-engine.vercel.app" target="_blank" rel="noopener">Slip Engine<span class="vh"> (opens in a new tab)</span></a></h3>
+            <div class="row__main">
+              <h3 class="h3"><a href="https://betslip-engine.vercel.app" target="_blank" rel="noopener"><span class="nm" data-perch>Slip Engine</span><span class="vh"> (opens in a new tab)</span></a></h3>
               <p class="desc">Live sports-data dashboard.</p>
             </div>
-            <p class="label domain" data-reveal-3d>betslip-engine.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
+            <p class="label domain">betslip-engine.vercel.app<svg class="ext" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></p>
           </li>
         </ul>
       </section>
       <section id="websites" class="pitch" aria-labelledby="websites-h">
-        <h2 class="pitch-h" id="websites-h" data-reveal-3d><span class="node is-now" aria-hidden="true"></span>A website that loads fast, reads clearly on a phone, and gets you the enquiry.</h2>
+        <h2 class="pitch-h" id="websites-h" data-reveal-3d><span class="node is-now" aria-hidden="true" data-perch="corner"></span>A website that loads fast, reads clearly on a phone, and gets you the <span data-perch>enquiry.</span></h2>
         <div class="pitch__act" data-reveal-3d>
           <p class="lead">Fixed price, fixed timeline, hosted on accounts you own. No retainers, no monthly builder fees unless you want them.</p>
-          <a class="plate" href="mailto:mngomezuluntuthuko@gmail.com?subject=Website%20quote" data-magnetic>Get a quote in 24 hours<svg class="arrow" viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="plate" href="mailto:mngomezuluntuthuko@gmail.com?subject=Website%20quote" data-magnetic><span class="plate__label">Get a quote in 24 hours</span><svg class="arrow" viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
       </section>
     </div>
@@ -583,7 +585,7 @@ html .ll-toggle:focus-visible::after{ content:""; position:absolute; inset:-10px
       </div>
       <div class="close-actions">
         <button class="ghost" type="button" id="copy-email" hidden><svg class="ico ico-copy" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="5" width="8.5" height="8.5"/><path d="M11 2.5H2.5V11"/></svg><svg class="ico ico-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 8.5 6.5 12 13 4.5"/></svg><span class="ghost__label">Copy address</span></button>
-        <p class="label tnum" id="jhb-time">Johannesburg time · SAST (UTC+2)</p>
+        <p class="label tnum" id="jhb-time" data-perch>Johannesburg time · SAST (UTC+2)</p>
       </div>
       <p class="vh" id="copy-status" aria-live="polite"></p>
       <ul class="links">
@@ -803,19 +805,124 @@ document.addEventListener('DOMContentLoaded', function () {
       var ink = cs.getPropertyValue('--ink').trim(), gold = cs.getPropertyValue('--gold-type').trim();
       var narrow = innerWidth < 720;
       window.LivingLayer.init({
-        character: 'falcon', look: 'flat', finish: 'matte', size: 80,
+        character: 'falcon', look: 'flat', finish: 'matte',
+        size: innerWidth >= 1000 ? 92 : 80,                    /* 64 on phones; more presence beside the big type */
         colors: { primary: ink, secondary: ink, dark: ink, accent: cs.getPropertyValue('--gold-field').trim(), light: gold },
         colorsOnDark: { primary: gold, secondary: gold, dark: gold, accent: ink, light: ink },
         dust: false,
         /* It enters from the left and soars on the right; side 'left' makes it face up and out when it lands. */
         side: 'left',
-        lane: { x: narrow ? 0.86 : 0.91, y: narrow ? 0.13 : 0.16 }, /* in the open sky above the nameplate */
+        lane: { x: narrow ? 0.86 : 0.91, y: narrow ? 0.10 : 0.16 }, /* in the open sky, right of 'Hello from' */
         introDelay: d.classList.contains('dawn') ? 1800 : 900, /* arrives once the gold field has opened */
         zIndex: 8,                                             /* under the skip link (--z-skip: 10) */
         toggle: { position: 'bottom-right', bg: ink, fg: gold, line: gold }
       });
     }
   } catch (e) {}
+
+  /* Perches. When the reader stops, the kit lands the falcon on the nearest perch in view (just past the end of its
+     first line, or on the top-right corner of a 'corner' perch) for about half a minute; with none in view it lands
+     wherever it is, which can be on words. So every depth of the page keeps a perch in view, and a perch stays
+     marked only while its spot is clear: the line has to leave room beside it, and the landed bird must not touch
+     a word, a plate's arrow or a link's icon. That is checked at load, on resize and when scrolling stops. The
+     hero's lower perches (the role line from 1000px, the home line, the horizon's end and the plate below that)
+     wake once the reader scrolls, so the falcon always greets from "Hello from" first. */
+  (function () {
+    var ll = window.__livingLayer;
+    if (!ll || !ll.state || !document.createRange) return;
+    var moved = false;
+    var cands = [].slice.call(document.querySelectorAll('[data-perch]')).map(function (el) { return { el: el, mode: el.getAttribute('data-perch') }; });
+    /* [selector, mode, from width, below width, waits for the reader to scroll]. Below 480px the plates are full
+       width, so a falcon beside the label sits wholly on the plate. Below 1000px the portrait is in the flow. */
+    [['.hero__who .role', '', 1000, 1e9, 1], ['.hero__who .where', '', 0, 1e9, 1], ['.hero .horizon', 'corner', 0, 1000, 1],
+     ['.cta-row .plate__label', '', 0, 480, 1], ['.story .portrait', 'corner', 0, 1000, 0], ['.pitch .plate__label', '', 0, 480, 0]].forEach(function (c) {
+      var el = document.querySelector(c[0]);
+      if (el) cands.push({ el: el, mode: c[1], when: function (w) { return (moved || !c[4]) && w >= c[2] && w < c[3]; } });
+    });
+    /* Where a date has no room beside it (small phones), the falcon perches on that role's node on the line instead. */
+    [].forEach.call(document.querySelectorAll('.ledger li'), function (li) {
+      var node = li.querySelector('.node'), date = li.querySelector('.when');
+      if (node && date) cands.push({ el: node, mode: 'corner', when: function () { return !date.hasAttribute('data-perch'); } });
+    });
+    /* The landed falcon (wings folded, facing up and out) as two boxes around its anchor, in wingspans. */
+    var BODY = [[-0.35, -0.18, 0.2, 0.12], [-0.31, 0.12, 0.09, 0.34]];
+    function spot(el, mode, size, vw) {   /* the kit's landing spot for this perch, in viewport pixels */
+      var r = el.getBoundingClientRect();
+      if (!r.width || !r.height) return null;
+      if (mode !== 'corner' && el.textContent.trim()) {
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        var rs = range.getClientRects();
+        if (rs.length) {
+          var top = rs[0].top, right = rs[0].right;
+          for (var i = 1; i < rs.length; i++) if (Math.abs(rs[i].top - top) < 3) right = Math.max(right, rs[i].right);
+          var x = right + size * 0.5;
+          return x > vw - size * 0.5 ? { full: true } : { x: Math.min(x, vw - size * 0.4), y: top + rs[0].height * 0.32 };
+        }
+      }
+      return { x: Math.min(r.right - Math.min(14, r.width * 0.1), vw - size * 0.4), y: r.top + 4 };
+    }
+    function words() {   /* the glyph band of every visible word, plus the plates' arrows and the links' icons */
+      var out = [].map.call(document.querySelectorAll('.plate .arrow, a .ext'), function (a) { var q = a.getBoundingClientRect(); return [q.left, q.top, q.right, q.bottom]; });
+      var tw = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT), rg = document.createRange(), n, m, re = /\S+/g;
+      while ((n = tw.nextNode())) {
+        var el = n.parentElement;
+        if (!el || el.closest('.vh, [aria-hidden="true"], [hidden], script, style, .ll-r')) continue;
+        re.lastIndex = 0;
+        while ((m = re.exec(n.nodeValue))) {
+          rg.setStart(n, m.index); rg.setEnd(n, m.index + m[0].length);
+          var qs = rg.getClientRects();
+          for (var j = 0; j < qs.length; j++) out.push([qs[j].left, qs[j].top + qs[j].height * 0.2, qs[j].right, qs[j].bottom - qs[j].height * 0.16]);
+        }
+      }
+      return out;
+    }
+    function check() {
+      var size = ll.state().size, vw = window.innerWidth, W = null;
+      if (!size) return;
+      cands.forEach(function (c) {
+        var on = !c.when || c.when(vw), a = on ? spot(c.el, c.mode, size, vw) : null;
+        if (a && a.full) on = false;
+        else if (a && !c.el.closest('.ll-r')) {   /* a perch still waiting to rise into place is checked once it has */
+          W = W || words();
+          on = !W.some(function (q) {
+            return BODY.some(function (b) { return a.x + b[0] * size < q[2] && a.x + b[2] * size > q[0] && a.y + b[1] * size < q[3] && a.y + b[3] * size > q[1]; });
+          });
+        }
+        if (on) c.el.setAttribute('data-perch', c.mode); else c.el.removeAttribute('data-perch');
+      });
+    }
+    /* As the nameplate tips, the falcon hops straight down from "Hello from" to the nearest lower perch (the role
+       line from 1000px, the horizon's end on phones), instead of circling over the name until the kit picks one. */
+    var hello = document.querySelector('.hello'), onHello = false, hopQueued = false;
+    function hop() {
+      hopQueued = false;
+      var s = ll.state();
+      if (s.perch === hello) onHello = true;
+      else if (s.perch) onHello = false;
+      if (!onHello || !hello || !ll.isEnabled() || hello.getBoundingClientRect().top > 40) return;
+      var best = null, bd = 1e9;
+      cands.forEach(function (c) {
+        if (!c.when || !c.el.hasAttribute('data-perch') || !c.el.closest('.hero')) return;
+        var a = spot(c.el, c.mode, s.size, window.innerWidth);
+        if (!a || a.full || a.y < 60 || a.y > window.innerHeight * 0.75) return;
+        var d = Math.sqrt((a.x - s.x) * (a.x - s.x) + (a.y - s.y) * (a.y - s.y));
+        if (d < bd) { bd = d; best = c.el; }
+      });
+      if (best) { onHello = false; ll.visit(best); }
+    }
+    var timer = 0;
+    function soon(ms) { clearTimeout(timer); timer = setTimeout(check, ms); }
+    moved = window.scrollY > 8;
+    window.addEventListener('scroll', function () {
+      if (!moved && window.scrollY > 8) { moved = true; check(); }
+      soon(600);
+      if (!hopQueued) { hopQueued = true; requestAnimationFrame(hop); }
+    }, { passive: true });
+    window.addEventListener('resize', function () { soon(250); }, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { soon(0); });
+    check();
+  })();
   /* Success moments: an email is on its way (any mailto) or the address is copied. */
   document.addEventListener('click', function (e) {
     if (e.target.closest && e.target.closest('a[href^="mailto:"]')) celebrate();
