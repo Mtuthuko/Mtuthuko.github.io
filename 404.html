@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · Mtuthuko Mngomezulu</title>
+<meta name="description" content="This page isn’t here. The site of Mtuthuko Mngomezulu is a single page.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F5C242" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#100D08" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/mm.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,50..150,100..900;1,100,300&family=Hanken+Grotesk:wght@400;600&display=swap");
+/* Gold Seam, the subset this page needs. The full system lives in index.html and DESIGN.md. */
+:root{
+  color-scheme: light dark;
+  --gold-field:#F5C242; --gold-type:#F5C242; --gold-deep:#E8AE24;
+  --ink:#15120C; --ink-raised:#231E15; --ink-2:#523F0E;
+  --sand:#F1E7D3; --sand-2:#B9AC93; --rule-gold:#6E5413; --rule-ink:#8C7A52;
+  --font-display:"Anybody", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+  --font-text:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --t-h2:clamp(2rem, 1.2rem + 3.4vw, 4.5rem);
+  --t-ui:1.0625rem; --t-lead:clamp(1.125rem, 1rem + .4vw, 1.3rem); --t-body:1.0625rem; --t-small:.9375rem;
+  --max:1440px; --gutter:clamp(16px, 4.4vw, 64px);
+  --r-cap:999px; --line-seam:3px; --line-focus:3px;
+  --z-header:2; --z-skip:10;
+  --ease-out:cubic-bezier(.16,1,.3,1); --dur-swap:160ms; --dur-exit:200ms;
+}
+@media (prefers-color-scheme: dark){ :root{
+  --gold-field:#D29A1E; --gold-type:#F2BE3E; --gold-deep:#C08A14;
+  --ink:#100D08; --ink-raised:#1D1912; --ink-2:#3A2A05;
+  --sand:#EDE3CF; --sand-2:#ADA088; --rule-gold:#5A420B; --rule-ink:#8C7A52;
+}}
+.field-hero{
+  --bg:var(--gold-field); --fg:var(--ink); --fg-2:var(--ink-2); --display:var(--ink);
+  --plate:var(--ink); --on-plate:var(--gold-type); --plate-hover:var(--ink-raised);
+  --seam:var(--ink); --ring:var(--ink); --rule:var(--rule-gold);
+}
+.field-ink{
+  --bg:var(--ink); --fg:var(--sand); --fg-2:var(--sand-2); --display:var(--gold-type);
+  --plate:var(--gold-type); --on-plate:var(--ink); --plate-hover:var(--gold-deep);
+  --seam:var(--gold-type); --ring:var(--gold-type); --rule:var(--rule-ink);
+}
+@media (prefers-color-scheme: dark){ .field-hero{
+  --bg:var(--ink); --fg:var(--sand); --fg-2:var(--sand-2); --display:var(--gold-type);
+  --plate:var(--gold-type); --on-plate:var(--ink); --plate-hover:var(--gold-deep);
+  --seam:var(--gold-type); --ring:var(--gold-type); --rule:var(--rule-ink);
+}}
+.field-ink, .field-hero{ background-color:var(--bg); color:var(--fg); }
+.site-header{ background:transparent; }
+*,*::before,*::after{ box-sizing:border-box; }
+html{ background:var(--ink); -webkit-text-size-adjust:100%; text-size-adjust:100%; accent-color:var(--ink);
+      scrollbar-color:var(--ink) var(--gold-field); }
+@media (prefers-color-scheme: dark){ html{ scrollbar-color:var(--gold-type) var(--ink); } }
+body{ margin:0; background:var(--ink); color:var(--sand); font:400 var(--t-body)/1.6 var(--font-text); font-synthesis:none;
+      -webkit-font-smoothing:antialiased; -webkit-tap-highlight-color:transparent; caret-color:currentColor; }
+h1,p{ margin:0; }
+h1{ text-wrap:balance; } p{ text-wrap:pretty; }
+a{ color:inherit; }
+:focus-visible{ outline:var(--line-focus) solid var(--ring, currentColor); outline-offset:3px; }
+:focus:not(:focus-visible){ outline:none; }
+main:focus{ outline:none; }
+::selection{ background:var(--ink); color:var(--gold-type); }
+.field-ink::selection, .field-ink ::selection{ background:var(--gold-type); color:var(--ink); }
+@media (prefers-color-scheme: dark){ .field-hero::selection, .field-hero ::selection{ background:var(--gold-type); color:var(--ink); } }
+.vh{ position:absolute !important; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+.wrap{ max-width:var(--max); margin-inline:auto; padding-inline:var(--gutter); position:relative; width:100%; }
+
+.skip{ position:absolute; left:var(--gutter); top:8px; z-index:var(--z-skip); min-height:48px; padding:0 18px;
+       display:inline-flex; align-items:center; background-color:var(--plate); color:var(--on-plate);
+       font:750 1rem/1 var(--font-display); font-stretch:115%; text-decoration:none;
+       transform:translateY(-200%); transition:transform var(--dur-swap) var(--ease-out); }
+.skip:focus-visible{ transform:none; }
+.site-header{ position:absolute; inset:0 0 auto 0; z-index:var(--z-header); }
+.site-header .wrap{ display:flex; height:72px; align-items:center; }
+.mark{ display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; margin-left:-5px; color:var(--display); }
+.mark svg{ width:34px; height:26px; }
+
+.plate{ display:inline-flex; align-items:center; gap:12px; min-height:56px; padding:0 22px; border:0; border-radius:0;
+        background:var(--plate); color:var(--on-plate); font:750 var(--t-ui)/1.15 var(--font-display); font-stretch:115%;
+        text-decoration:none; text-wrap:balance; cursor:pointer; transition:background-color var(--dur-swap) var(--ease-out); }
+.plate svg{ width:18px; height:14px; transition:transform var(--dur-exit) var(--ease-out); }
+.plate:hover{ background:var(--plate-hover); }
+.plate:hover svg{ transform:translateX(4px); }
+.plate:active{ transform:translateY(1px); }
+@media (max-width:479.98px){ .plate{ width:100%; justify-content:space-between; } }
+
+/* The lost page: the seam, with a visible break in it */
+.lost{ min-height:100svh; display:flex; flex-direction:column; justify-content:center; padding-block:120px 72px; }
+.lost-h{ font:800 var(--t-h2)/.95 var(--font-display); font-stretch:125%; letter-spacing:-.015em; color:var(--display); max-width:12ch; }
+.break{ display:flex; gap:24px; margin:40px 0 32px; }
+.break span{ display:block; height:var(--line-seam); border-radius:var(--r-cap); background:var(--seam); }
+.break span:first-child{ flex:0 0 40%; }
+.break span:last-child{ flex:1 1 auto; }
+.lead{ font:400 var(--t-lead)/1.5 var(--font-text); color:var(--fg); max-width:52ch; }
+.lost .plate{ margin-top:32px; }
+.footer{ padding-block:32px; }
+.footer p{ font:400 var(--t-small)/1.5 var(--font-text); color:var(--fg-2); }
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{ transition-duration:.01ms !important; transition-delay:0s !important; animation:none !important; }
+  .plate:hover svg{ transform:none; }
+}
+</style>
+</head>
+<body>
+<a class="skip field-hero" href="#main">Skip to content</a>
+<header class="site-header field-hero">
+  <div class="wrap">
+    <a class="mark" href="/" aria-label="Mtuthuko Mngomezulu, home"><svg viewBox="0 0 34 26" aria-hidden="true" focusable="false"><polyline points="3,23 3,3 10,14 17,3 24,14 31,3 31,23" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</header>
+<main id="main" tabindex="-1" class="field-hero lost">
+  <div class="wrap">
+    <h1 class="lost-h">This page isn’t here.</h1>
+    <span class="break" aria-hidden="true"><span></span><span></span></span>
+    <p class="lead">This site is a single page.</p>
+    <a class="plate" href="/">Back to the start<svg viewBox="0 0 18 14" aria-hidden="true" focusable="false"><path d="M1 7h15M10 1.5 15.5 7 10 12.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</main>
+<footer class="field-ink footer">
+  <div class="wrap"><p>Mtuthuko Mngomezulu · KwaThema, Ekurhuleni · South Africa</p></div>
+</footer>
+</body>
+</html>
